@@ -1,4 +1,5 @@
 -- Open Markdown preview (via glow) in floating window, exit with <esc>
+-- TODO: make window nicer, not 100% width/height
 local preview = function()
 	local path = vim.fn.shellescape(vim.fn.expand('%'))
 	local glowbuf = vim.api.nvim_create_buf(false, true)
