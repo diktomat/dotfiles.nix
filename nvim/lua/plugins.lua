@@ -7,7 +7,6 @@ end
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim' -- let packer manage itself
 	use 'gpanders/editorconfig.nvim'
-	use 'ellisonleao/glow.nvim'
 
 	use { 'ellisonleao/gruvbox.nvim',
 		requires = 'rktjmp/lush.nvim',
