@@ -1,0 +1,8 @@
+everything that doesn't live in ~/.config normally
+
+- bootstrap.sh -> only for completely new systems for installing homebrew etc — TODO
+- install.sh -> link everything in other/ where it belongs
+- home/ -> dotfiles living directly in ~
+- defaults.sh -> script to set macOS defaults — TODO
+- Brewfile
+- YNABtoolkit.json -> config for YNAB toolkit browser extension

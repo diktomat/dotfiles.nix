@@ -1,0 +1,10 @@
+# SSH/GPG keys:
+other/home/gnupg/**
+!other/home/gnupg/*.conf
+other/home/ssh/**
+!other/home/ssh/config
+
+# Neovim
+nvim/spell
+nvim/plugin
+

@@ -1,0 +1,80 @@
+tap "homebrew/aliases"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+tap "yt-dlp/taps"
+brew "aria2"
+brew "bat"
+brew "coreutils"
+brew "fd"
+brew "ffmpeg"
+brew "fish"
+brew "gh"
+brew "glow"
+brew "gnupg"
+brew "imagemagick"
+brew "lazygit"
+brew "lsd"
+brew "mas"
+brew "neovim"
+brew "pandoc"
+brew "progress"
+brew "ripgrep"
+brew "starship"
+brew "universal-ctags"
+brew "zola"
+brew "zoxide"
+brew "yt-dlp/taps/yt-dlp"
+cask "alfred"
+cask "anki"
+cask "backblaze"
+cask "calibre"
+cask "cheatsheet"
+cask "font-fira-code-nerd-font"
+cask "github"
+cask "gpg-suite"
+cask "inkscape"
+cask "keka"
+cask "keyboardcleantool"
+cask "kitty"
+cask "macfuse"
+cask "mactex-no-gui"
+cask "moneymoney"
+cask "nheko"
+cask "portfolioperformance"
+cask "raindropio"
+cask "signal"
+cask "tex-live-utility"
+cask "thunderbird"
+cask "utm"
+cask "vivaldi"
+cask "warp"
+cask "ytmdesktop-youtube-music"
+cask "zoom"
+mas "1Blocker", id: 1365531024
+mas "1Password 7", id: 1333542190
+mas "Affinity Photo", id: 824183456
+mas "Bear", id: 1091189122
+mas "CotEditor", id: 1024640650
+mas "Developer", id: 640199958
+mas "Fantastical", id: 975937182
+mas "Grocery", id: 1195676848
+mas "Keynote", id: 409183694
+mas "LanguageTool", id: 1534275760
+mas "Mela", id: 1568924476
+mas "MusicHarbor", id: 1440405750
+mas "NepTunes", id: 1006739057
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Pixelmator Pro", id: 1289583905
+mas "Playgrounds", id: 1496833156
+mas "Reeder", id: 1529448980
+mas "Save to Raindrop.io", id: 1549370672
+mas "StopTheMadness", id: 1376402589
+mas "Super Agent", id: 1568262835
+mas "TestFlight", id: 899247664
+mas "Things", id: 904280696
+mas "Toolkit for YNAB", id: 1592912837
+mas "WhatsApp", id: 1147396723
+mas "Xcode", id: 497799835
