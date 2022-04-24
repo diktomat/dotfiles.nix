@@ -1,5 +1,6 @@
 vim.o.shell = '/usr/bin/env fish'
 vim.opt.colorcolumn = '91'
+vim.opt.completeopt = 'menuone,preview,longest'
 vim.opt.cursorline = true
 vim.opt.expandtab = false
 vim.opt.grepformat = '%f:%l:%c:%m'
@@ -22,6 +23,7 @@ vim.opt.splitright = true
 vim.opt.tabstop = 4
 vim.opt.termguicolors = true
 vim.opt.undofile = true
+vim.opt.wildmode = "longest:full,full"
 
 require 'plugins'
 require 'keymaps'
