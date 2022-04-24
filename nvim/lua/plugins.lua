@@ -12,6 +12,63 @@ require('packer').startup(function(use)
 		config = function() require('nvim-autopairs').setup() end
 	}
 
+	use { 'hrsh7th/nvim-cmp',
+		requires = {
+			'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-path', 'hrsh7th/cmp-buffer',
+			'hrsh7th/cmp-nvim-lsp-signature-help', 'hrsh7th/cmp-nvim-lua',
+			'SirVer/ultisnips', 'quangnguyen30192/cmp-nvim-ultisnips', 'honza/vim-snippets',
+			'onsails/lspkind.nvim'
+		},
+		config = function()
+			local cmp = require('cmp')
+			local cmp_ultisnips_mappings = require('cmp_nvim_ultisnips.mappings')
+			local lspkind = require('lspkind')
+
+			cmp.setup {
+				snippet = {
+					expand = function(args)
+						vim.fn["UltiSnips#Anon"](args.body)
+					end,
+				},
+				sources = cmp.config.sources {
+					{ name = 'nvim_lsp' },
+					{ name = 'nvim_lua' },
+					{ name = 'ultisnips' },
+					{ name = 'nvim_lsp_signature_help' },
+					{ name = 'path' },
+					{ name = 'buffer' },
+				},
+				formatting = {
+					format = lspkind.cmp_format(),
+				},
+				mapping = cmp.mapping.preset.insert {
+					['<Tab>'] = cmp.mapping(function(fallback)
+						cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+					end, { 'i', 's' }),
+					['<S-Tab>'] = cmp.mapping(function(fallback)
+						cmp_ultisnips_mappings.jump_backwards(fallback)
+					end, { 'i' , 's' }),
+					['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
+					['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
+					['<CR>'] = cmp.mapping({
+						i = cmp.mapping.confirm({
+							behavior = cmp.ConfirmBehavior.Replace, select = false
+						}),
+						c = function(fallback)
+							if cmp.visible() then
+								cmp.confirm({
+									behavior = cmp.ConfirmBehavior.Replace, select = false
+								})
+							else
+								fallback()
+							end
+						end
+					}),
+				},
+			}
+		end,
+	}
+
 	use { 'numToStr/Comment.nvim',
 		config = function() require('Comment').setup() end
 	}
@@ -22,13 +79,13 @@ require('packer').startup(function(use)
 	}
 
 	use { 'neovim/nvim-lspconfig',
+		requires = { 'hrsh7th/cmp-nvim-lsp', },
 		config = function()
-			local on_attach = function(_, bufnr)
-				vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-			end
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 			require('lspconfig').gopls.setup {
-				on_attach = on_attach,
+				capabilities = capabilities,
 			}
 
 			-- Lua for Neovim
@@ -36,7 +93,7 @@ require('packer').startup(function(use)
 			table.insert(runtime_path, 'lua/?.lua')
 			table.insert(runtime_path, 'lua/?/init.lua')
 			require('lspconfig').sumneko_lua.setup {
-				on_attach = on_attach,
+				capabilities = capabilities,
 				settings = {
 					Lua = {
 						runtime = {

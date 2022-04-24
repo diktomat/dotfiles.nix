@@ -1,6 +1,5 @@
 vim.o.shell = '/usr/bin/env fish'
-vim.opt.colorcolumn = '91'
-vim.opt.completeopt = 'menuone,preview,longest'
+vim.opt.colorcolumn = '101'
 vim.opt.cursorline = true
 vim.opt.expandtab = false
 vim.opt.grepformat = '%f:%l:%c:%m'
