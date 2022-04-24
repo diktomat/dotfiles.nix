@@ -58,6 +58,10 @@ require('packer').startup(function(use)
 		end,
 	}
 
+	use { 'lewis6991/spellsitter.nvim',
+		config = function() require('spellsitter').setup() end,
+	}
+
 	use { 'nvim-telescope/telescope.nvim',
 		requires = 'nvim-lua/plenary.nvim',
 	}
