@@ -28,3 +28,5 @@ defaults write com.apple.dock autohide-delay -float 0
 # TextEdit: Plain Text as default
 defaults write com.apple.TextEdit RichText -int 0
 
+# Xcode: show build time
+defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool true
