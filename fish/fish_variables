@@ -7,6 +7,7 @@ SETUVAR _fish_abbr_cdtmp:cd\x20\x28mktemp\x20\x2dd\x29
 SETUVAR _fish_abbr_e:\x24EDITOR
 SETUVAR _fish_abbr_l:lsd\x20\x2dl
 SETUVAR _fish_abbr_la:lsd\x20\x2dlA
+SETUVAR _fish_abbr_lg:lazygit
 SETUVAR _fish_abbr_ls:lsd
 SETUVAR _fish_abbr_tree:lsd\x20\x2d\x2dtree
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
