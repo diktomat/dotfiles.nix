@@ -2,7 +2,7 @@
 # VERSION: 3.0
 SETUVAR --export EDITOR:nvim
 SETUVAR __fish_initialized:3400
-SETUVAR _fish_abbr_brup:brew\x20update\x20\x26\x26\x20brew\x20outdated
+SETUVAR _fish_abbr_brup:brew\x20update\x20\x3e/dev/null\x20\x26\x26\x20brew\x20outdated
 SETUVAR _fish_abbr_cdtmp:cd\x20\x28mktemp\x20\x2dd\x29
 SETUVAR _fish_abbr_e:\x24EDITOR
 SETUVAR _fish_abbr_l:lsd\x20\x2dl
@@ -37,4 +37,4 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow\x1e\x2di
 SETUVAR fish_pager_color_prefix:cyan\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/Users/bene/\x2elocal/share/cargo/bin\x1e/Users/bene/\x2elocal/bin
+SETUVAR fish_user_paths:/Users/bene/\x2elocal/share/go/bin\x1e/Users/bene/\x2elocal/share/cargo/bin\x1e/Users/bene/\x2elocal/bin
