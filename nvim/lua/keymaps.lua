@@ -19,6 +19,7 @@ wk.register({
 		s = { telescope.lsp_document_symbols, "Document Symbols" },
 		S = { telescope.lsp_workspace_symbols, "Workspace Symbols" },
 	},
+	s = { require("symbols-outline").toggle_outline, "Toggle Symbols Outline" },
 }, { prefix = "<leader>" })
 
 local lsbuf = vim.lsp.buf

@@ -9,6 +9,7 @@ end
 require("packer").startup(function(use)
 	use("wbthomason/packer.nvim") -- let packer manage itself
 	use("gpanders/editorconfig.nvim")
+	use("simrat39/symbols-outline.nvim")
 
 	use({ -- {{{ Autopairs
 		"windwp/nvim-autopairs",
