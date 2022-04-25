@@ -21,6 +21,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.tabstop = 4
 vim.opt.termguicolors = true
+vim.opt.timeoutlen = 500
 vim.opt.undofile = true
 vim.opt.wildmode = "longest:full,full"
 

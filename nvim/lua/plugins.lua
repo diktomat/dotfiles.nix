@@ -161,7 +161,34 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim" })
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"kyazdani42/nvim-web-devicons",
+			"nvim-telescope/telescope-file-browser.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+		},
+		config = function()
+			require("telescope").setup({
+				defaults = {
+					layout_strategy = "flex",
+				},
+				extensions = {
+					fzf = {
+						fuzzy = true,
+						override_generic_sorter = true,
+						override_file_sorter = true,
+						case_mode = "smart_case",
+					},
+				},
+			})
+			local exts = { "file_browser", "fzf" }
+			for _, ext in pairs(exts) do
+				require("telescope").load_extension(ext)
+			end
+		end,
+	})
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
