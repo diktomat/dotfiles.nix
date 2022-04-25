@@ -11,6 +11,13 @@ require("packer").startup(function(use)
 	use("gpanders/editorconfig.nvim")
 	use("simrat39/symbols-outline.nvim")
 
+	-- {{{ Color Schemes
+	use({ "ellisonleao/gruvbox.nvim", requires = "rktjmp/lush.nvim" })
+	use("ful1e5/onedark.nvim")
+	use("ishan9299/nvim-solarized-lua")
+	use("ray-x/aurora")
+	-- }}}
+
 	use({ -- {{{ Autopairs
 		"windwp/nvim-autopairs",
 		config = function()
@@ -108,14 +115,6 @@ require("packer").startup(function(use)
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup()
-		end,
-	}) -- }}}
-
-	use({ -- {{{ Gruvbox
-		"ellisonleao/gruvbox.nvim",
-		requires = "rktjmp/lush.nvim",
-		config = function()
-			vim.cmd("colorscheme gruvbox")
 		end,
 	}) -- }}}
 
