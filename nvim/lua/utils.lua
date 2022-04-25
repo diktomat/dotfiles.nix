@@ -17,7 +17,7 @@ local open_float_win = function()
 end
 
 local lazygit = function()
-	local gitdir = vim.fn.finddir(".git", ";")
+	local gitdir = vim.fn.fnamemodify(vim.fn.finddir(".git", ";"), ":h")
 	open_float_win()
 	vim.fn.termopen("lazygit -p " .. gitdir, {
 		on_exit = function()
