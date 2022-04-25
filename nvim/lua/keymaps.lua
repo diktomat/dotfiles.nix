@@ -22,6 +22,7 @@ wk.register({
 		s = { telescope.lsp_document_symbols, "Document Symbols" },
 		S = { telescope.lsp_workspace_symbols, "Workspace Symbols" },
 	},
+	lg = { require("utils").lazygit, "Open Lazygit" },
 	s = { require("symbols-outline").toggle_outline, "Toggle Symbols Outline" },
 }, { prefix = "<leader>" })
 
