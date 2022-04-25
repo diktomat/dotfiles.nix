@@ -22,3 +22,7 @@ if not grep pam_tid /etc/pam.d/sudo > /dev/null 2>&1
 	sudo sed -i '.bak' '/sufficient/p; s/smartcard/tid/' /etc/pam.d/sudo
 end
 
+# FZF Config
+set -gx FZF_DEFAULT_COMMAND "fd --type f --follow --hidden --exclude .git --color always"
+set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND . \$dir"
+set -gx FZF_DEFAULT_OPTS "--ansi --tabstop=4 --preview='bat --color=always {}'"
