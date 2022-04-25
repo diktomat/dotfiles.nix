@@ -127,6 +127,11 @@ require("packer").startup(function(use)
 
 			require("lspconfig").gopls.setup({
 				capabilities = capabilities,
+				settings = {
+					gopls = {
+						gofumpt = true,
+					},
+				},
 			})
 
 			-- Lua for Neovim
@@ -175,6 +180,11 @@ require("packer").startup(function(use)
 			require("telescope").setup({
 				defaults = {
 					layout_strategy = "flex",
+				},
+				pickers = {
+					lsp_code_actions = {
+						theme = "cursor",
+					},
 				},
 				extensions = {
 					fzf = {
