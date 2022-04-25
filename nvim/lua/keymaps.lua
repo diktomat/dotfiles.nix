@@ -3,12 +3,13 @@ vim.g.mapleader = " "
 local wk = require("which-key")
 
 local telescope = require("telescope.builtin")
+local telext = require("telescope").extensions
 wk.register({
 	f = {
 		name = "Find (Telescope)",
 		b = { telescope.buffers, "Buffers" },
 		f = { telescope.find_files, "Find Files" },
-		F = { telescope.file_browser, "File Browser" },
+		F = { telext.file_browser.file_browser, "File Browser" },
 		g = { telescope.live_grep, "Live Grep" },
 		G = { telescope.grep_string, "Grep" },
 		h = { telescope.help_tags, "Vim Help" },
