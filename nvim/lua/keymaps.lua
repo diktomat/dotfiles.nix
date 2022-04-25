@@ -14,6 +14,8 @@ wk.register({
 		G = { telescope.grep_string, "Grep" },
 		h = { telescope.help_tags, "Vim Help" },
 		m = { telescope.man_pages, "Man Pages" },
+		d = { telext.dash.search, "Search Dash" },
+		D = { "<cmd>DashWord<cr>", "Search Word in Dash" },
 		q = { telescope.quickfix, "Quickfix list" },
 		j = { telescope.jumplist, "Jumplist" },
 		r = { telescope.lsp_references, "List References" },

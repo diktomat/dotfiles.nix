@@ -176,6 +176,7 @@ require("packer").startup(function(use)
 			"kyazdani42/nvim-web-devicons",
 			"nvim-telescope/telescope-file-browser.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+			{ "mrjones2014/dash.nvim", run = "make install" },
 		},
 		config = function()
 			require("telescope").setup({
@@ -188,6 +189,9 @@ require("packer").startup(function(use)
 					},
 				},
 				extensions = {
+					dash = {
+						dash_app_path = "/Applications/Setapp/Dash.app",
+					},
 					fzf = {
 						fuzzy = true,
 						override_generic_sorter = true,
@@ -196,7 +200,7 @@ require("packer").startup(function(use)
 					},
 				},
 			})
-			local exts = { "file_browser", "fzf" }
+			local exts = { "dash", "file_browser", "fzf" }
 			for _, ext in pairs(exts) do
 				require("telescope").load_extension(ext)
 			end
