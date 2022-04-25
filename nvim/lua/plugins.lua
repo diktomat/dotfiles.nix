@@ -161,6 +161,14 @@ require("packer").startup(function(use)
 		end,
 	}) -- }}}
 
+	use({ -- {{{ Lualine
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
+		config = function()
+			require("lualine").setup()
+		end,
+	}) -- }}}
+
 	use({ -- {{{ SpellSitter
 		"lewis6991/spellsitter.nvim",
 		config = function()
