@@ -1,3 +1,5 @@
+-- vim: set fdm=marker:
+
 -- Install packer
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -8,14 +10,14 @@ require("packer").startup(function(use)
 	use("wbthomason/packer.nvim") -- let packer manage itself
 	use("gpanders/editorconfig.nvim")
 
-	use({
+	use({ -- {{{ Autopairs
 		"windwp/nvim-autopairs",
 		config = function()
 			require("nvim-autopairs").setup()
 		end,
-	})
+	}) -- }}}
 
-	use({
+	use({ -- {{{ Autocompletion/Snippets
 		"hrsh7th/nvim-cmp",
 		requires = {
 			"hrsh7th/cmp-nvim-lsp",
@@ -99,24 +101,24 @@ require("packer").startup(function(use)
 				}),
 			})
 		end,
-	})
+	}) -- }}}
 
-	use({
+	use({ -- {{{ Comment.nvim
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup()
 		end,
-	})
+	}) -- }}}
 
-	use({
+	use({ -- {{{ Gruvbox
 		"ellisonleao/gruvbox.nvim",
 		requires = "rktjmp/lush.nvim",
 		config = function()
 			vim.cmd("colorscheme gruvbox")
 		end,
-	})
+	}) -- }}}
 
-	use({
+	use({ -- {{{ LSPConfig
 		"neovim/nvim-lspconfig",
 		requires = { "hrsh7th/cmp-nvim-lsp" },
 		config = function()
@@ -152,16 +154,16 @@ require("packer").startup(function(use)
 				},
 			})
 		end,
-	})
+	}) -- }}}
 
-	use({
+	use({ -- {{{ SpellSitter
 		"lewis6991/spellsitter.nvim",
 		config = function()
 			require("spellsitter").setup()
 		end,
-	})
+	}) -- }}}
 
-	use({
+	use({ -- {{{ Telescope
 		"nvim-telescope/telescope.nvim",
 		requires = {
 			"nvim-lua/plenary.nvim",
@@ -188,9 +190,9 @@ require("packer").startup(function(use)
 				require("telescope").load_extension(ext)
 			end
 		end,
-	})
+	}) -- }}}
 
-	use({
+	use({ -- {{{ Treesitter
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 		config = function()
@@ -225,9 +227,9 @@ require("packer").startup(function(use)
 				indent = { enable = true },
 			})
 		end,
-	})
+	}) -- }}}
 
-	use({
+	use({ -- {{{ Which Key
 		"folke/which-key.nvim",
 		config = function()
 			require("which-key").setup({
@@ -239,5 +241,5 @@ require("packer").startup(function(use)
 				},
 			})
 		end,
-	})
+	}) -- }}}
 end)
