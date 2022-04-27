@@ -207,8 +207,17 @@ require("packer").startup(function(use)
 					},
 				},
 				pickers = {
-					lsp_code_actions = {
-						theme = "cursor",
+					lsp_definitions = {
+						initial_mode = "normal",
+					},
+					lsp_type_definitions = {
+						initial_mode = "normal",
+					},
+					lsp_implementations = {
+						initial_mode = "normal",
+					},
+					lsp_references = {
+						initial_mode = "normal",
 					},
 				},
 				extensions = {

@@ -38,7 +38,7 @@ wk.register({
 	["C-k"] = { lsbuf.signature_help, "Display Signature Help" },
 	["<leader>c"] = {
 		name = "Act on Code",
-		c = { telescope.lsp_code_actions, "LSP Code Action" },
+		c = { lsbuf.code_action, "Code Action" }, -- TODO: not in telescope anymore, use dressing.nvim or telescope-ui-select.nvim
 		r = { lsbuf.rename, "Rename Symbol Everywhere" },
 		f = { lsbuf.formatting, "Format File" },
 	},
