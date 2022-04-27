@@ -13,9 +13,10 @@ require("packer").startup(function(use)
 
 	-- {{{ Color Schemes
 	use({ "ellisonleao/gruvbox.nvim", requires = "rktjmp/lush.nvim" })
-	use("ful1e5/onedark.nvim")
-	use("ishan9299/nvim-solarized-lua")
-	use("ray-x/aurora")
+	use("folke/tokyonight.nvim")
+	-- 	use("ful1e5/onedark.nvim")
+	-- 	use("ishan9299/nvim-solarized-lua")
+	-- 	use("ray-x/aurora")
 	-- }}}
 
 	use({ -- {{{ Autopairs
@@ -31,7 +32,10 @@ require("packer").startup(function(use)
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-cmdline",
+			"dmitmel/cmp-cmdline-history",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"hrsh7th/cmp-nvim-lsp-document-symbol",
 			"hrsh7th/cmp-nvim-lua",
 			"L3MON4D3/LuaSnip",
 			"rafamadriz/friendly-snippets",
@@ -53,7 +57,7 @@ require("packer").startup(function(use)
 			cmp.setup({
 				snippet = {
 					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
+						luasnip.lsp_expand(args.body)
 					end,
 				},
 				sources = cmp.config.sources({
@@ -90,22 +94,24 @@ require("packer").startup(function(use)
 					end, { "i", "s" }),
 					["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 					["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-					["<CR>"] = cmp.mapping({
-						i = cmp.mapping.confirm({
-							behavior = cmp.ConfirmBehavior.Replace,
-							select = false,
-						}),
-						c = function(fallback)
-							if cmp.visible() then
-								cmp.confirm({
-									behavior = cmp.ConfirmBehavior.Replace,
-									select = false,
-								})
-							else
-								fallback()
-							end
-						end,
-					}),
+				}),
+			})
+			cmp.setup.cmdline(":", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = "path" },
+				}, {
+					{ name = "cmdline" },
+					{ name = "cmdline_history" },
+				}),
+			})
+			cmp.setup.cmdline("/", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp_document_symbol" },
+				}, {
+					{ name = "buffer" },
+					{ name = "cmdline_history" },
 				}),
 			})
 		end,
@@ -165,7 +171,12 @@ require("packer").startup(function(use)
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons" },
 		config = function()
-			require("lualine").setup()
+			require("lualine").setup({
+				options = {
+					globalstatus = true,
+					theme = "tokyonight",
+				},
+			})
 		end,
 	}) -- }}}
 
@@ -186,9 +197,14 @@ require("packer").startup(function(use)
 			{ "mrjones2014/dash.nvim", run = "make install" },
 		},
 		config = function()
+			local trouble = require("trouble.providers.telescope")
 			require("telescope").setup({
 				defaults = {
 					layout_strategy = "flex",
+					mappings = {
+						i = { ["<c-t>"] = trouble.open_with_trouble },
+						n = { ["<c-t>"] = trouble.open_with_trouble },
+					},
 				},
 				pickers = {
 					lsp_code_actions = {
@@ -211,6 +227,14 @@ require("packer").startup(function(use)
 			for _, ext in pairs(exts) do
 				require("telescope").load_extension(ext)
 			end
+		end,
+	}) -- }}}
+
+	use({ -- {{{ Todo Comments
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup()
 		end,
 	}) -- }}}
 
@@ -248,6 +272,14 @@ require("packer").startup(function(use)
 				highlight = { enable = true },
 				indent = { enable = true },
 			})
+		end,
+	}) -- }}}
+
+	use({ -- {{{ Trouble
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("trouble").setup()
 		end,
 	}) -- }}}
 

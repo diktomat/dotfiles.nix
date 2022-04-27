@@ -31,4 +31,5 @@ require("plugins")
 require("keymaps")
 
 vim.g.gruvbox_contrast_dark = "hard"
-vim.cmd("colorscheme gruvbox")
+vim.g.tokyonight_style = "night"
+vim.cmd("colorscheme tokyonight")

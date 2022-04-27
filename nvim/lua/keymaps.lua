@@ -27,25 +27,35 @@ wk.register({
 }, { prefix = "<leader>" })
 
 local lsbuf = vim.lsp.buf
+local trouble = require("trouble")
 wk.register({
 	gd = { telescope.lsp_definitions, "Jump to Definition" },
 	gtd = { telescope.lsp_type_definitions, "Jump to Definition of Type" },
 	gD = { lsbuf.declaration, "Jump to Declaration" },
 	gi = { telescope.lsp_implementations, "List Implementations" },
-	gr = { telescope.lsp_references, "List References" },
+	gr = { function() trouble.toggle("lsp_references") end, "List References" },
 	K = { lsbuf.hover, "Display Information" },
 	["C-k"] = { lsbuf.signature_help, "Display Signature Help" },
 	["<leader>c"] = {
 		name = "Act on Code",
 		c = { telescope.lsp_code_actions, "LSP Code Action" },
 		r = { lsbuf.rename, "Rename Symbol Everywhere" },
-		-- f = { lb.formatting, "Format File" }, TODO: more info needed
+		f = { lsbuf.formatting, "Format File" },
 	},
 	["<leader>w"] = {
 		name = "LSP Workspace",
 		a = { lsbuf.add_workspace_folder, "Add Folder" },
 		r = { lsbuf.remove_workspace_folder, "Remove Folder" },
-		l = { vim.pretty_print(lsbuf.list_workspace_folders), "Workspace Folders" },
+		l = { function() vim.pretty_print(lsbuf.list_workspace_folders) end, "Workspace Folders" },
 		s = { telescope.lsp_workspace_symbols, "Workspace Symbols" },
 	},
+	["<leader>x"] = {
+		name = "Trouble",
+		x = { trouble.toggle, "Toggle Trouble" },
+		w = { function() trouble.toggle("workspace_diagnostics") end, "Workspace" },
+		d = { function() trouble.toggle("document_diagnostics") end, "Document" },
+		q = { function() trouble.toggle("quickfix") end, "Quickfix" },
+		l = { function() trouble.toggle("loclist") end, "Loclist" },
+		t = { function() trouble.toggle("todo") end, "TODO" },
+	}
 })
