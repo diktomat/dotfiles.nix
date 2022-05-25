@@ -11,10 +11,7 @@ end
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx XDG_DATA_HOME   $HOME/.local/share
 set -gx XDG_STATE_HOME  $HOME/.local/state
-
-# asdf version manager
-set -gx ASDF_CONFIG_FILE $XDG_CONFIG_HOME/asdf/asdfrc
-set -gx ASDF_DATA_DIR    $XDG_DATA_HOME/asdf
+set -gx XDG_RUNTIME_DIR $HOME/.local/run
 
 # Bundler
 set -gx BUNDLE_USER_CONFIG $XDG_CONFIG_HOME/bundle
