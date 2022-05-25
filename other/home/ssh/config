@@ -1,7 +1,8 @@
 Host *
-	UseKeychain yes
-	AddKeysToAgent yes
-	IdentityFile ~/.ssh/id_rsa
+	# UseKeychain yes
+	# AddKeysToAgent yes
+	# IdentityFile ~/.ssh/id_rsa
+	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
 Host raser
 	HostName raser.fritz.box
