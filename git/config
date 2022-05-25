@@ -4,6 +4,17 @@
 	signingKey = 50027A3368AA398E
 [credential]
 	helper = osxkeychain
+[core]
+	editor = nvim
+	pager = delta
+[alias]
+	st = status
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative # found here, thanks: https://github.com/tjdevries/config_manager/blob/master/xdg_config/git/config
+[commit]
+	gpgSign = true
+[delta]
+	line-numbers = true
+	syntax-theme = gruvbox-dark
 [init]
 	defaultBranch = main
 [filter "lfs"]
@@ -11,6 +22,4 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
-[commit]
-	gpgSign = true
 
