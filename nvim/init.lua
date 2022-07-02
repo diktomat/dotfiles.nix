@@ -56,6 +56,12 @@ vim.api.nvim_create_autocmd("CmdlineLeave", {
 		vim.opt.hlsearch = false
 	end,
 })
+vim.api.nvim_create_autocmd({ "BufEnter", "TermOpen" }, { -- for some reason TermEnter doesnt work, so BufEnter term://*
+	group = "d12bb",
+	pattern = "term://*",
+	desc = "Insert only for terminals",
+	command = "startinsert",
+})
 vim.api.nvim_create_autocmd("FileType", {
 	group = "d12bb",
 	pattern = "*",
@@ -294,6 +300,12 @@ wk.register({
 		j = { tsb.jumplist, "Jumplist" },
 	},
 })
+local function t(str)
+	return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+wk.register({
+	["<Esc><Esc>"] = { t([[<C-\><C-n>]]), "Escape Terminal" },
+}, { mode = "t" })
 
 -- Misc {{{1
 vim.g.gruvbox_baby_background_color = "dark"
