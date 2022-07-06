@@ -3,7 +3,7 @@
 vim.g.do_filetype_lua = 1
 vim.g.did_load_filetypes = 0
 vim.g.mapleader = " "
-vim.o.shell = "/usr/bin/env fish"
+vim.o.shell = "fish"
 vim.opt.colorcolumn = "+1"
 vim.opt.completeopt = "menu,menuone,noinsert"
 vim.opt.cursorline = true
@@ -101,6 +101,7 @@ require("packer").startup({{
 	{ "nvim-telescope/telescope.nvim", requires = { "kyazdani42/nvim-web-devicons", "nvim-lua/plenary.nvim" } },
 		{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+		{ "nvim-treesitter/nvim-treesitter-textobjects" },
 	{ "folke/which-key.nvim", config = function() require("which-key").setup() end },
 }, config = {
 	display = {
@@ -116,6 +117,36 @@ local tsb = require("telescope.builtin")
 
 require("nvim-treesitter.configs").setup({
 	highlight = { enable = true },
+	textobjects = {
+		select = {
+			enable = true,
+			keymaps = {
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
+			},
+		},
+		move = {
+			enable = true,
+			goto_next_start = {
+				["]m"] = "@function.outer",
+				["]]"] = "@class.outer",
+			},
+			goto_next_end = {
+				["]M"] = "@function.outer",
+				["]["] = "@class.outer",
+			},
+			goto_previous_start = {
+				["[m"] = "@function.outer",
+				["[["] = "@class.outer",
+			},
+			goto_previous_end = {
+				["[M"] = "@function.outer",
+				["[]"] = "@class.outer",
+			},
+		},
+	},
 })
 
 -- CMP {{{2
@@ -176,7 +207,7 @@ local lsp_attach = function(client, buf)
 		["gD"] = { vim.lsp.buf.declaration, "Go to Declaration" },
 		["gd"] = { vim.lsp.buf.definition, "Go to Definition" },
 		["K"] = { vim.lsp.buf.hover, "Hover Info" },
-		["<leader>q"] = { vim.diagnostic.setloclist, "Diagnostics -> Loclist" },
+		["<leader>q"] = { vim.diagnostic.setqflist, "Diagnostics -> Quickfix" },
 		["[d"] = { vim.diagnostic.goto_prev, "Previous Diagnostic" },
 		["]d"] = { vim.diagnostic.goto_next, "Next Diagnostic" },
 		["<leader>e"] = { vim.diagnostic.open_float, "Explain Diagnostic" },
@@ -286,8 +317,16 @@ ts.load_extension("fzf")
 
 -- WhichKey {{{2
 wk.register({
-	["["] = { name = "Previous..." },
-	["]"] = { name = "Next..." },
+	["["] = {
+		name = "Previous...",
+		c = { "<cmd>cprev<cr>", ":cprev" },
+		l = { "<cmd>lprev<cr>", ":lprev" },
+	},
+	["]"] = {
+		name = "Next...",
+		c = { "<cmd>cnext<cr>", ":cnext" },
+		l = { "<cmd>lnext<cr>", ":lnext" },
+	},
 	["<leader>f"] = {
 		name = "Find (Telescope)",
 		b = { tsb.buffers, "Buffers" },
