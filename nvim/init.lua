@@ -91,6 +91,7 @@ require("packer").startup({{
 	{ "numToStr/Comment.nvim", config = function() require("Comment").setup() end },
 	{ "gpanders/editorconfig.nvim" },
 	{ "j-hui/fidget.nvim", config = function() require("fidget").setup() end },
+	{ "crispgm/nvim-go", requires = "nvim-lua/plenary.nvim" },
 	{ "luisiacc/gruvbox-baby" },
 	{ "neovim/nvim-lspconfig" },
 	{ "onsails/lspkind.nvim" },
@@ -147,6 +148,12 @@ require("nvim-treesitter.configs").setup({
 			},
 		},
 	},
+})
+
+require("go").setup({
+	auto_format = false,
+	auto_lint = false,
+	formatter = "gofumpt",
 })
 
 -- CMP {{{2
@@ -281,13 +288,13 @@ require("lspconfig").sumneko_lua.setup({ -- {{{3
 
 -- Luasnip {{{2
 local ls = require("luasnip")
-vim.keymap.set({ "i", "s" }, "<C-k>", function()
+vim.keymap.set({ "i", "s" }, "<C-j>", function()
 	if ls.expand_or_jumpable() then
 		ls.expand_or_jump()
 	end
 end, { silent = true })
 
-vim.keymap.set({ "i", "s" }, "<C-j>", function()
+vim.keymap.set({ "i", "s" }, "<C-k>", function()
 	if ls.jumpable(-1) then
 		ls.jump(-1)
 	end
