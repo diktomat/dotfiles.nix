@@ -1,4 +1,6 @@
-local open_float_win = function()
+local M = {}
+
+M.open_float_win = function()
 	local pbuf = vim.api.nvim_create_buf(false, true)
 	local height = vim.api.nvim_list_uis()[1].height
 	local width = vim.api.nvim_list_uis()[1].width
@@ -7,8 +9,8 @@ local open_float_win = function()
 		relative = "editor",
 		width = math.floor(width * 0.8),
 		height = math.floor(height * 0.8),
-		row = (height / 2) - (height * 0.4),
-		col = (width / 2) - (width * 0.4),
+		row = height * 0.1,
+		col = width * 0.1,
 		style = "minimal",
 		border = "rounded",
 	})
@@ -16,9 +18,9 @@ local open_float_win = function()
 	return pbuf
 end
 
-local lazygit = function()
+M.lazygit = function()
 	local gitroot = vim.fn.fnamemodify(vim.fn.finddir(".git", ";"), ":h") -- find .git/, use parent
-	open_float_win()
+	M.open_float_win()
 	vim.fn.termopen("lazygit -p " .. gitroot, {
 		on_exit = function()
 			vim.cmd("q")
@@ -27,7 +29,4 @@ local lazygit = function()
 	vim.cmd("startinsert")
 end
 
-return {
-	open_float_win = open_float_win,
-	lazygit = lazygit,
-}
+return M
