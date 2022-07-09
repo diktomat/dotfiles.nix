@@ -64,7 +64,22 @@ require("go").setup({
 require("rust-tools").setup({ -- {{{3
 	server = {
 		capabilities = capabilities,
-		on_attach = lsp_attach,
+		on_attach = function(client, buf)
+			vim.api.nvim_create_augroup("codelens", { clear = true })
+			vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+				group = "codelens",
+				buffer = buf,
+				desc = "Refresh Codelens",
+				callback = function()
+					vim.lsp.codelens.refresh()
+				end,
+			})
+			wk.register({ ["<leader>cl"] = { vim.lsp.codelens.run, "Run Codelens" } })
+			vim.cmd("highlight link LspCodeLens Comment")
+			vim.cmd("highlight link LspCodeLensSeparator Comment")
+
+			lsp_attach(client, buf)
+		end,
 	},
 })
 
