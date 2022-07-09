@@ -74,7 +74,10 @@ require("rust-tools").setup({ -- {{{3
 					vim.lsp.codelens.refresh()
 				end,
 			})
-			wk.register({ ["<leader>cl"] = { vim.lsp.codelens.run, "Run Codelens" } })
+			wk.register({
+				["<leader>cl"] = { vim.lsp.codelens.run, "Run Codelens" },
+				["<leader>cr"] = { require("rust-tools.runnables").runnables, "Rust Runnables" },
+			})
 			vim.cmd("highlight link LspCodeLens Comment")
 			vim.cmd("highlight link LspCodeLensSeparator Comment")
 
