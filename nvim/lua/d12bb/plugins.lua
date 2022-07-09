@@ -2,6 +2,7 @@
 require("packer").startup({{
 	{ "wbthomason/packer.nvim" },
 
+	{ "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup() end },
 	{ "hrsh7th/nvim-cmp" },
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-cmdline" },
