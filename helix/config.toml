@@ -1,0 +1,26 @@
+theme = "gruvbox_baby"
+
+[editor]
+line-number = "relative"
+cursorline = true
+shell = ["fish", "-c"]
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.whitespace.render]
+tab = "all"
+newline = "all"
+
+[editor.whitespace.characters]
+nbsp = "+"
+tab = ">"
+newline = "↵"
+
+[editor.indent-guides]
+render = true
+
+[keys.normal]
+H = "goto_window_top"
+M = "goto_window_center"
+L = "goto_window_bottom"

@@ -1,0 +1,178 @@
+# Author : Benedikt Müller <d12bb@posteo.de>
+# Based on https://github.com/luisiacc/gruvbox-baby
+
+
+# Syntax Highlighting
+constructor = "clean_green"
+label = "blue_gray"
+tag = "clean_green"
+operator = "foreground"
+namespace = "red"
+
+type = "clean_green"
+"type.builtin" = "blue_gray"
+
+constant = { fg = "pink", modifiers = ["bold"] }
+"constant.builtin" = "pink"
+"constant.builtin.boolean" = "orange"
+"constant.character" = "soft_green"
+"constant.character.escape" = { fg = "dark_gray", modifiers = ["italic"] }
+"constant.numeric" = "magenta"
+# "constant.numeric.integer" =
+# "constant.numeric.float" =
+
+string = "soft_green"
+# "string.regexp" =
+"string.special" = "soft_yellow"
+# "string.special.path" =
+# "string.special.url" =
+# "string.special.symbol" =
+
+comment = { fg = "comment", modifiers = ["italic"] }
+# "comment.line" =
+# "comment.block" =
+# "comment.block.documentation" =
+
+variable = "light_blue"
+"variable.builtin" = "blue_gray"
+"variable.parameter" = "blue_gray"
+# "variable.other" =
+# "variable.other.member" = "blue_gray"
+# "variable.function" =
+
+punctuation = "foreground"
+# "punctuation.delimiter" =
+# "punctuation.bracket" =
+
+keyword = { fg = "red", modifiers = ["italic"] }
+# "keyword.control" =
+"keyword.control.conditional" = "red"
+"keyword.control.repeat" = "red"
+"keyword.control.import" = "red"
+# "keyword.control.return" =
+"keyword.control.exception" = "red"
+"keyword.operator" = "red"
+# "keyword.directive" =
+"keyword.function" = { fg = "red", modifiers = ["italic"] }
+# "keyword.storage" =
+# "keyword.storage.type" =
+# "keyword.storage.modifier" =
+
+function = { fg = "soft_yellow", modifiers = ["bold"] }
+"function.builtin" = "soft_yellow"
+# "function.method" =
+"function.macro" =  "soft_yellow"
+# "function.special" =
+
+# markup =
+"markup.heading" = "foreground"
+"markup.heading.marker" = "orange"
+# "markup.heading.1" =
+# "markup.heading.2" =
+# "markup.heading.3" =
+# "markup.heading.4" =
+# "markup.heading.5" =
+# "markup.heading.6" =
+"markup.list" = "orange"
+# "markup.list.unnumbered" =
+# "markup.list.numbered" =
+"markup.bold" = { fg = "bright_yellow", modifiers = ["bold"] }
+"markup.italic" = { fg = "magenta", modifiers = ["italic"] }
+"markup.link" = { fg = "foreground", modifiers = ["underlined"] }
+"markup.link.url" = { fg = "soft_green", modifiers = ["underlined"] }
+# "markup.link.label" =
+"markup.link.text" = "blue_gray"
+"markup.quote" = "comment"
+"markup.raw" = "comment"
+"markup.raw.inline" = "bright_yellow"
+"markup.raw.block" = "bright_yellow"
+
+diff = "comment"
+"diff.plus" = "forest_green"
+"diff.minus" = "red"
+"diff.delta" = "orange"
+# "diff.delta.moved" =
+
+# Interface
+# markup =
+# "markup.normal" =
+# "markup.normal.completion" =
+# "markup.normal.hover" =
+# "markup.heading" =
+# "markup.heading.completion" =
+"markup.heading.hover" = "orange"
+# "markup.raw" =
+# "markup.raw.inline" =
+# "markup.raw.inline.completion" =
+# "markup.raw.inline.completion.hover" =
+
+"ui.background" = { bg = "background" }
+# "ui.background.separator" =
+"ui.cursor" = { fg = "background", bg = "#928374" }
+# "ui.cursor.insert" =
+# "ui.cursor.select" =
+"ui.cursor.match" = { bg = "blue_gray", modifiers = ["underlined"] }
+# "ui.cursor.primary" =
+"ui.linenr" = "medium_gray"
+"ui.linenr.selected" = { fg = "comment", modifiers = ["bold"] }
+"ui.statusline" = { fg = "foreground", bg = "medium_gray", modifiers = ["bold"] }
+"ui.statusline.inactive" = { fg = "foreground", bg = "medium_gray" }
+"ui.statusline.normal" = { fg = "light_blue", bg = "medium_gray" }
+"ui.statusline.insert" = { fg = "bright_yellow", bg = "medium_gray" }
+"ui.statusline.select" = { fg = "milk", bg = "medium_gray" }
+"ui.popup" = { fg = "foreground", bg = "background_dark" }
+# "ui.popup.info" =
+"ui.window" = "bg_light"
+# "ui.help" =
+"ui.text" = "foreground"
+# "ui.text.focus" =
+# "ui.text.info" =
+"ui.virtual.ruler" = { bg = "background_dark" }
+"ui.virtual.whitespace" = "comment"
+"ui.virtual.indent-guide" = "comment"
+"ui.menu" = { fg = "foreground", bg = "bg_light" }
+"ui.menu.selected" = { fg = "background", bg = "blue_gray" }
+# "ui.menu.scroll" =
+"ui.selection" = { bg = "medium_gray" }
+# "ui.selection.primary" =
+"ui.cursorline.primary" = { bg = "bg_light" }
+# "ui.cursorline.secondary" =
+"warning" = "soft_yellow"
+"error" = "red"
+"info" = "foreground"
+"hint" = "foreground"
+"diagnostic" = { modifiers = ["underlined"] }
+# "diagnostic.warning" = { fg = "soft_yellow", modifiers = ["underlined"] }
+# "diagnostic.error" = { fg = "red", modifiers = ["underlined"] }
+# "diagnostic.info" = { fg = "foreground", modifiers = ["underlined"] }
+# "diagnostic.hint" = { fg = "foreground", modifiers = ["underlined"] }
+
+
+[palette]
+dark = "#161616"
+foreground = "#ebdbb2"
+background = "#202020"
+background_dark = "#161616"
+bg_light = "#32302f"
+medium_gray = "#504945"
+comment = "#665c54"
+gray = "#dedede"
+soft_yellow = "#eebd35"
+soft_green = "#98971a"
+bright_yellow = "#fabd2f"
+orange = "#d65d0e"
+red = "#fb4934"
+error_red = "#cc241d"
+magenta = "#b16286"
+pink = "#d4879c"
+light_blue = "#7fa2ac"
+dark_gray = "#83a598"
+blue_gray = "#458588"
+forest_green = "#689d6a"
+clean_green = "#8ec07c"
+milk = "#e7d7ad"
+
+diff_add = "#26332c"
+diff_change = "#273842"
+diff_delete = "#572e33"
+diff_text = "#314753"
