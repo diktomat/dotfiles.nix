@@ -1,3 +1,28 @@
+require("lspsaga").init_lsp_saga({
+	code_action_lightbulb = {
+		virtual_text = false,
+	},
+	symbol_in_winbar = {
+		enable = true,
+	},
+})
+
+local ts = require("telescope")
+ts.setup({
+	defaults = {
+		layout_strategy = "flex",
+	},
+	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_generic_sorter = true,
+			override_file_sorter = true,
+			case_mode = "smart_case",
+		},
+	},
+})
+ts.load_extension("fzf")
+
 require("nvim-treesitter.configs").setup({
 	highlight = { enable = true },
 	textobjects = {

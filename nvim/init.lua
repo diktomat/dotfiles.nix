@@ -1,7 +1,4 @@
 -- vim:set path+=./lua,$XDG_DATA_HOME/nvim/site/pack/packer/start/*/lua :
-vim.g.do_filetype_lua = 1
-vim.g.did_load_filetypes = 0
-
 vim.g.mapleader = " "
 vim.o.shell = "fish"
 vim.opt.colorcolumn = "+1"
@@ -39,10 +36,9 @@ vim.g.rust_fold = 1
 vim.g.rust_recommended_style = 0 -- would set expandtab otherwise
 
 require("d12bb.plugins")
-require("d12bb.treesitter")
+require("d12bb.misc")
 require("d12bb.cmp")
 require("d12bb.lsp")
-require("d12bb.luasnip")
 require("d12bb.keymaps")
 require("d12bb.autocmds")
 
