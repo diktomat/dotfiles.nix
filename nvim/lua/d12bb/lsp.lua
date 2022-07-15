@@ -36,7 +36,7 @@ local lsp_attach = function(client, buf)
 
 	-- Stylua for Lua, LSP no good here..
 	if client.name ~= "sumneko_lua" and client.resolved_capabilities.document_formatting then
-		wk.register({ ["<leader>gq"] = { vim.lsp.buf.formatting_sync, "Format File" } }, { buffer = buf })
+		wk.register({ ["<leader>gq"] = { vim.lsp.buf.format, "Format File" } }, { buffer = buf })
 		vim.api.nvim_buf_set_option(buf, "formatexpr", "v:lua.vim.lsp.formatexpr()")
 
 		vim.api.nvim_create_augroup("autoformat", { clear = true })
@@ -44,7 +44,7 @@ local lsp_attach = function(client, buf)
 			group = "autoformat",
 			buffer = buf,
 			desc = "Autoformat on save",
-			callback = vim.lsp.buf.formatting_sync,
+			callback = vim.lsp.buf.format,
 		})
 	end
 end

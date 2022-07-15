@@ -47,7 +47,10 @@ vim.g.gruvbox_baby_telescope_theme = 1
 vim.cmd("colorscheme gruvbox-baby")
 require("lualine").setup()
 
--- cd to home when starting Neovide.app
-if vim.fn.exists("g:neovide") == 1 and vim.fn.getcwd() == "/" then
-	vim.api.nvim_set_current_dir("~")
+if vim.g.neovide then
+	vim.g.neovide_remember_window_size = true
+	-- cd to home when starting Neovide.app
+	if vim.fn.getcwd() == "/" then
+		vim.api.nvim_set_current_dir("~")
+	end
 end
