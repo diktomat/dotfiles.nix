@@ -11,6 +11,7 @@ require("packer").startup({{
 		{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 		{ "hrsh7th/cmp-path" },
 	{ "numToStr/Comment.nvim", config = function() require("Comment").setup() end },
+	{ "mrjones2014/dash.nvim", run = "make install" },
 	{ "gpanders/editorconfig.nvim" },
 	{ "j-hui/fidget.nvim", config = function() require("fidget").setup() end },
 	{ "ray-x/go.nvim" },

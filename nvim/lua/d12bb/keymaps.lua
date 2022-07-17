@@ -20,6 +20,7 @@ wk.register({
 		G = { tsb.grep_string, "Grep String" },
 		h = { tsb.help_tags, "Vim Help" },
 		H = { tsb.man_pages, "Man Pages" },
+		d = { require("dash").search, "Dash" },
 		q = { tsb.quickfix, "Quickfix List" },
 		j = { tsb.jumplist, "Jumplist" },
 	},
@@ -28,6 +29,7 @@ wk.register({
 		g = { require("d12bb.utils").lazygit, "Lazygit" },
 		t = { require("lspsaga.floaterm").open_float_terminal, "Terminal" },
 	},
+	["<leader>k"] = { "<cmd>DashWord<cr>", "Dash Word Under Cursor" },
 })
 
 local function t(str)
@@ -36,7 +38,6 @@ end
 wk.register({
 	["<Esc><Esc>"] = { t([[<C-\><C-n>]]), "Escape Terminal" },
 }, { mode = "t" })
-
 
 local ls = require("luasnip")
 

@@ -13,6 +13,9 @@ ts.setup({
 		layout_strategy = "flex",
 	},
 	extensions = {
+		dash = {
+			dash_app_path = "/Applications/Setapp/Dash.app",
+		},
 		fzf = {
 			fuzzy = true,
 			override_generic_sorter = true,
