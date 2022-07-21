@@ -86,6 +86,11 @@ require("rust-tools").setup({ -- {{{3
 	},
 })
 
+require("lspconfig").sourcekit.setup({
+	capabilities = capabilities,
+	on_attach = lsp_attach,
+})
+
 require("lspconfig").sumneko_lua.setup({ -- {{{3
 	capabilities = capabilities,
 	on_attach = lsp_attach,

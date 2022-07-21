@@ -22,6 +22,7 @@ require("packer").startup({{
 	{ "nvim-lualine/lualine.nvim", requires = "kyazdani42/nvim-web-devicons" },
 	{ "L3MON4D3/LuaSnip" },
 		{ "saadparwaiz1/cmp_luasnip" },
+	{ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" },
 	{ "simrat39/rust-tools.nvim" },
 	{ "nvim-telescope/telescope.nvim", requires = { "kyazdani42/nvim-web-devicons", "nvim-lua/plenary.nvim" } },
 		{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
