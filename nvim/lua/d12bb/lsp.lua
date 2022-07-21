@@ -14,6 +14,9 @@ local lsp_attach = function(client, buf)
 			vim.lsp.buf.format()
 		end,
 	})
+	if client.name == "null-ls" then
+		return
+	end
 
 	require("d12bb.keymaps").lsp(buf)
 	vim.api.nvim_buf_set_option(buf, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -30,6 +33,15 @@ require("go").setup({
 	lsp_on_client_start = lsp_attach,
 	textobjects = false, -- have my on setup in treesitter.lua
 	verbose_tests = false,
+})
+
+local nlb = require("null-ls").builtins
+require("null-ls").setup({
+	sources = {
+		nlb.formatting.stylua,
+		nlb.formatting.swiftformat,
+	},
+	on_attach = lsp_attach,
 })
 
 require("rust-tools").setup({ -- {{{3
