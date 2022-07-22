@@ -37,6 +37,7 @@ M.general = function()
 	local function t(str)
 		return vim.api.nvim_replace_termcodes(str, true, true, true)
 	end
+
 	wk.register({
 		["<Esc><Esc>"] = { t([[<C-\><C-n>]]), "Escape Terminal" },
 	}, { mode = "t" })
