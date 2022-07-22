@@ -1,0 +1,11 @@
+Library/Containers/*/Data/Desktop
+Library/Containers/*/Data/Downloads
+Library/Containers/*/Data/Library
+Library/Containers/*/Data/Movies
+Library/Containers/*/Data/Music
+Library/Containers/*/Data/Pictures
+
+.git
+.cache
+Caches
+
