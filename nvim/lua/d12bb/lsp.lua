@@ -27,6 +27,7 @@ require("go").setup({
 	dap_debug = false,
 	disable_per_project_cfg = true,
 	lsp_cfg = { capabilities = capabilities },
+	lsp_diag_hdlr = false,
 	lsp_format_on_save = false, -- autoformat already setup in lsp_attach
 	lsp_gofumpt = true,
 	lsp_keymaps = false, -- keymaps already setup in lsp_attach
@@ -44,7 +45,7 @@ require("null-ls").setup({
 	on_attach = lsp_attach,
 })
 
-require("rust-tools").setup({ -- {{{3
+require("rust-tools").setup({
 	server = {
 		capabilities = capabilities,
 		on_attach = function(client, buf)

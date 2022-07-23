@@ -5,6 +5,7 @@ vim.opt.colorcolumn = "+1"
 vim.opt.completeopt = "menu,menuone,noinsert"
 vim.opt.cursorline = true
 vim.opt.expandtab = false
+vim.opt.formatoptions = "jcroql"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.guifont = "FiraCode Nerd Font Mono"
@@ -30,6 +31,7 @@ vim.opt.textwidth = 100
 vim.opt.timeoutlen = 500
 vim.opt.undofile = true
 vim.opt.wildmode = "longest:full,full"
+vim.diagnostic.config({ virtual_text = false })
 
 -- :h ft_rust.txt
 vim.g.rust_fold = 1
