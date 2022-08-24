@@ -2,9 +2,6 @@ local wk = require("which-key")
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local lsp_attach = function(client, buf)
-	wk.register({ ["<leader>gq"] = { vim.lsp.buf.format, "Format File" } }, { buffer = buf })
-	vim.api.nvim_buf_set_option(buf, "formatexpr", "v:lua.vim.lsp.formatexpr()")
-
 	vim.api.nvim_create_augroup("autoformat", { clear = true })
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		group = "autoformat",
@@ -14,7 +11,9 @@ local lsp_attach = function(client, buf)
 			vim.lsp.buf.format()
 		end,
 	})
+	vim.api.nvim_buf_set_option(buf, "formatexpr", "v:lua.vim.lsp.formatexpr()")
 	if client.name == "null-ls" then
+		wk.register({ ["<leader>gq"] = { vim.lsp.buf.format, "Format File" } }, { buffer = buf })
 		return
 	end
 

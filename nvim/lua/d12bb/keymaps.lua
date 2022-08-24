@@ -75,6 +75,7 @@ M.lsp = function(buf)
 		["<leader>r"] = { tsb.lsp_references, "References to Symbol" },
 		["<leader>fs"] = { tsb.lsp_document_symbols, "Document Symbols" },
 		["<leader>fS"] = { tsb.lsp_workspace_symbols, "Workspace Symbols" },
+		["<leader>gq"] = { vim.lsp.buf.format, "Format File" },
 		["<C-b>"] = {
 			function()
 				require("lspsaga.action").smart_scroll_with_saga(-1)

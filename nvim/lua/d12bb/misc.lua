@@ -1,6 +1,6 @@
 require("lspsaga").init_lsp_saga({
 	code_action_lightbulb = {
-		virtual_text = false,
+		virtual_text = true,
 	},
 	symbol_in_winbar = {
 		enable = true,

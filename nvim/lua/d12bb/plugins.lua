@@ -18,7 +18,6 @@ require("packer").startup({{
 	{ "luisiacc/gruvbox-baby" },
 	{ "neovim/nvim-lspconfig" },
 	{ "onsails/lspkind.nvim" },
-	{ "https://git.sr.ht/~whynothugo/lsp_lines.nvim", config = function() require("lsp_lines").setup() end },
 	{ "glepnir/lspsaga.nvim" },
 	{ "nvim-lualine/lualine.nvim", requires = "kyazdani42/nvim-web-devicons" },
 	{ "L3MON4D3/LuaSnip" },
