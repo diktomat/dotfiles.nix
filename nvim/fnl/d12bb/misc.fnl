@@ -1,9 +1,41 @@
+(let [ap (require :nvim-autopairs)]
+  (ap.setup {:enable_check_bracket_line false}))
+
+(let [c (require :Comment)]
+  (c.setup))
+
+(let [f (require :fidget)]
+  (f.setup))
+
 (let [lspsaga (require :lspsaga)]
   (lspsaga.init_lsp_saga {:code_action_lightbulb {:virtual_text true}
                           :symbol_in_winbar {:enable true}}))
 
 (let [ts (require :telescope)]
   (ts.setup {:defaults {:layout_strategy :flex}
+             :ensure_installed [:bash
+                                :c
+                                :comment
+                                :css
+                                :fennel
+                                :fish
+                                :gitignore
+                                :go
+                                :gomod
+                                :gowork
+                                :help
+                                :html
+                                :lua
+                                :make
+                                :markdown
+                                :markdown_inline
+                                :python
+                                :ruby
+                                :rust
+                                :swift
+                                :toml
+                                :vim
+                                :yaml]
              :extensions {:dash {:dash_app_path :/Applications/Setapp/Dash.app}
                           :fzf {:fuzzy true
                                 :override_generic_sorter true

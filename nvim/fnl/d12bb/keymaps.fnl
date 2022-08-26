@@ -6,6 +6,8 @@
 (local dash (require :dash))
 (local ls (require :luasnip))
 
+(wk.setup)
+
 (fn M.general []
   (wk.register {"[" {:name :Previous...}
                 "]" {:name :Next...}

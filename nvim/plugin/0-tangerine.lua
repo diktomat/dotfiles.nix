@@ -28,7 +28,3 @@ require("tangerine").setup({
 if tangerine_bootstrap then
 	_G.tangerine.api.compile.all()
 end
-if bootstrap("https://github.com/wbthomason/packer.nvim") then
-	require("d12bb.plugins")
-	require("packer").sync()
-end
