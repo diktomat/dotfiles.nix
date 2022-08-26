@@ -1,58 +1,57 @@
--- vim:set path+=./lua,$XDG_DATA_HOME/nvim/site/pack/packer/start/*/lua :
-vim.g.mapleader = " "
-vim.o.shell = "fish"
-vim.opt.colorcolumn = "+1"
-vim.opt.completeopt = "menu,menuone,noinsert"
-vim.opt.cursorline = true
-vim.opt.expandtab = false
-vim.opt.formatoptions = "jcroql"
-vim.opt.grepformat = "%f:%l:%c:%m"
-vim.opt.grepprg = "rg --vimgrep"
-vim.opt.guifont = "FiraCode Nerd Font Mono"
-vim.opt.hlsearch = false -- autotoggled when searching, see user.autocmds
-vim.opt.ignorecase = true
-vim.opt.laststatus = 3
-vim.opt.linebreak = false
-vim.opt.list = true
-vim.opt.listchars = "tab:> ,lead:·,trail:·,extends:⇢,precedes:⇠,nbsp:+"
-vim.opt.mouse = "a"
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.scrolloff = 3
-vim.opt.shelltemp = false -- use pipe instead of tmp file for shell commands
-vim.opt.shiftwidth = 4
-vim.opt.signcolumn = "yes"
-vim.opt.smartcase = true
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.tabstop = 4
-vim.opt.termguicolors = true
-vim.opt.textwidth = 100
-vim.opt.timeoutlen = 500
-vim.opt.undofile = true
-vim.opt.wildmode = "longest:full,full"
-vim.diagnostic.config({ virtual_text = false })
+(import-macros {: boolean?} :hibiscus.core)
+(import-macros {: color! : g! : set!} :hibiscus.vim)
 
--- :h ft_rust.txt
-vim.g.rust_fold = 1
-vim.g.rust_recommended_style = 0 -- would set expandtab otherwise
+(g! mapleader " ")
+(set! shell "fish")
+(set! colorcolumn "+1")
+(set! completeopt "menu,menuone,noinsert")
+(set! cursorline true)
+(set! expandtab false)
+(set! formatoptions "jcroql")
+(set! grepformat "%f:%l:%c:%m")
+(set! grepprg "rg --vimgrep")
+(set! guifont "FiraCode Nerd Font Mono")
+(set! hlsearch false) ;; autotoggled when searching, see d12bb.autocmds
+(set! ignorecase true)
+(set! laststatus 3)
+(set! linebreak false)
+(set! list true)
+(set! listchars "tab:> ,lead:·,trail:·,extends:⇢,precedes:⇠,nbsp:+")
+(set! mouse "a")
+(set! number true)
+(set! relativenumber true)
+(set! scrolloff 3)
+(set! shelltemp false) ;; use pipe instead of tmp file for shell commands
+(set! shiftwidth 4)
+(set! signcolumn "yes")
+(set! smartcase true)
+(set! splitbelow true)
+(set! splitright true)
+(set! tabstop 4)
+(set! termguicolors true)
+(set! textwidth 100)
+(set! timeoutlen 500)
+(set! undofile true)
+(set! wildmode "longest:full,full")
+(vim.diagnostic.config { :virtual_text false })
 
-require("d12bb.plugins")
-require("d12bb.misc")
-require("d12bb.cmp")
-require("d12bb.lsp")
-require("d12bb.keymaps").general()
-require("d12bb.autocmds")
+;; :h ft_rust.txt
+(g! rust_fold 1)
+(g! rust_recommended_style 0) ;; would set expandtab otherwise
 
-vim.g.gruvbox_baby_background_color = "dark"
-vim.g.gruvbox_baby_telescope_theme = 1
-vim.cmd("colorscheme gruvbox-baby")
-require("lualine").setup()
+(require :d12bb.plugins)
+(require :d12bb.misc)
+(require :d12bb.cmp)
+(require :d12bb.lsp)
+((. (require :d12bb.keymaps) :general))
+(require :d12bb.autocmds)
 
-if vim.g.neovide then
-	vim.g.neovide_remember_window_size = true
-	-- cd to home when starting Neovide.app
-	if vim.fn.getcwd() == "/" then
-		vim.api.nvim_set_current_dir("~")
-	end
-end
+(g! gruvbox_baby_background_color "dark")
+(g! gruvbox_baby_telescope_theme 1)
+(color! gruvbox-baby)
+((. (require :lualine) :setup))
+
+(when (and (boolean? vim.g.neovide) (= vim.g.neovide true))
+	(g! neovide_remember_window_size true)
+	(if (= vim.fn.getcwd "/")
+		(vim.api.nvim_set_current_dir "~")))
