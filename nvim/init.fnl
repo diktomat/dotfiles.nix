@@ -11,7 +11,7 @@
 (set! grepformat "%f:%l:%c:%m")
 (set! grepprg "rg --vimgrep")
 (set! guifont "FiraCode Nerd Font Mono")
-(set! hlsearch false) ;; autotoggled when searching, see d12bb.autocmds
+(set! hlsearch false) ; autotoggled when searching, see d12bb.autocmds
 (set! ignorecase true)
 (set! laststatus 3)
 (set! linebreak false)
@@ -21,7 +21,7 @@
 (set! number true)
 (set! relativenumber true)
 (set! scrolloff 3)
-(set! shelltemp false) ;; use pipe instead of tmp file for shell commands
+(set! shelltemp false) ; use pipe instead of tmp file for shell commands
 (set! shiftwidth 4)
 (set! signcolumn "yes")
 (set! smartcase true)
@@ -37,7 +37,7 @@
 
 ;; :h ft_rust.txt
 (g! rust_fold 1)
-(g! rust_recommended_style 0) ;; would set expandtab otherwise
+(g! rust_recommended_style 0) ; would set expandtab otherwise
 
 (require :d12bb.plugins)
 (require :d12bb.misc)

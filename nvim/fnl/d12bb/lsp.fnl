@@ -32,8 +32,8 @@
              :textobjects false
              :verbose_tests false}))
 
-(let [nlb (. (require :null-ls) :builtins)
-      null-ls (require :null-ls)]
+(let [null-ls (require :null-ls)
+      nlb null-ls.builtins]
   (null-ls.setup {:sources [nlb.formatting.stylua nlb.formatting.swiftformat]
                   :on_attach lsp_attach}))
 

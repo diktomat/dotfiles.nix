@@ -44,7 +44,6 @@
           (if (ls.choice_active) (ls.change_choice 1)))))
 
 (fn M.lsp [buf]
-  ;; TODO: Add descriptions
   (map! [n :buffer] :gd (. (require :lspsaga.definition) :preview_definition)
         "Preview Definition")
   (map! [n :buffer] :gD vim.lsp.buf.definition "Goto Definition")
