@@ -15,6 +15,7 @@ local tangerine_bootstrap = bootstrap("https://github.com/udayvir-singh/tangerin
 bootstrap("https://github.com/udayvir-singh/hibiscus.nvim")
 
 require("tangerine").setup({
+  target = vim.fn.stdpath [[data]] .. "/tangerine",
 	rtpdirs = { "compiler", "ftplugin" },
 	compiler = {
 		hooks = { "onsave", "oninit" },

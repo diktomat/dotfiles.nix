@@ -6,7 +6,6 @@ other/home/ssh/**
 
 # Neovim
 nvim/spell
-nvim/lua
 nvim/plugin/packer_compiled.lua
 nvim/ftplugin/*.lua
 
