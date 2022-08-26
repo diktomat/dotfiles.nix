@@ -34,7 +34,9 @@
 
 (let [null-ls (require :null-ls)
       nlb null-ls.builtins]
-  (null-ls.setup {:sources [nlb.formatting.stylua nlb.formatting.swiftformat]
+  (null-ls.setup {:sources [nlb.formatting.fnlfmt
+                            nlb.formatting.stylua
+                            nlb.formatting.swiftformat]
                   :on_attach lsp_attach}))
 
 (let [rust (require :rust-tools)]
