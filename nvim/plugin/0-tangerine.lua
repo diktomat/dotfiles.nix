@@ -9,13 +9,16 @@ local function bootstrap(url)
 		print(name .. ": finished installing")
 		return true
 	end
+	return false
 end
 
-local tangerine_bootstrap = bootstrap("https://github.com/udayvir-singh/tangerine.nvim")
-bootstrap("https://github.com/udayvir-singh/hibiscus.nvim")
+if bootstrap("https://github.com/udayvir-singh/hibiscus.nvim") then
+	vim.cmd("packadd hibiscus.nvim")
+end
+bootstrap("https://github.com/udayvir-singh/tangerine.nvim")
 
 require("tangerine").setup({
-  target = vim.fn.stdpath [[data]] .. "/tangerine",
+	target = vim.fn.stdpath([[data]]) .. "/tangerine",
 	rtpdirs = { "compiler", "ftplugin" },
 	compiler = {
 		hooks = { "onsave", "oninit" },
@@ -26,6 +29,3 @@ require("tangerine").setup({
 		end,
 	},
 })
-if tangerine_bootstrap then
-	_G.tangerine.api.compile.all()
-end
