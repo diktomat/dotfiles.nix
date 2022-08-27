@@ -1,10 +1,11 @@
 (import-macros {: augroup! : set!} :hibiscus.vim)
 
+;; fnlfmt: skip
 (augroup! :d12bb
-  [[CmdLineEnter] [/ ?] '(set! hlsearch true)]  ; Highlight only when searching
-  [[CmdLineLeave] [/ ?] '(set! hlsearch false)] ; Highlight only when searching
-  [[BufEnter TermOpen] "term://*" :startinsert] ; Insert only for Terminal buffers
-  [[FileType] *                                 ; Notify when TS parser not installed
+  [[CmdLineEnter :desc "Highlight only when searching" ] [/ ?] '(set! hlsearch true)]
+  [[CmdLineLeave :desc "Highlight only when searching" ] [/ ?] '(set! hlsearch false)]
+  [[BufEnter TermOpen :desc "Insert only for Terminal buffers"] "term://*" :startinsert]
+  [[FileType :desc "Notify when TS parser not installed"] *
     '(let [parsers (require :nvim-treesitter.parsers)
            lang (parsers.get_buf_lang)]
       (if (and (not= lang :help)
