@@ -1,3 +1,8 @@
+;; (import-macros {: setlocal!} :hibiscus.vim)
+;; (setlocal! include "^\\s*require")
+;; (setlocal! includeexpr "substitute(v:fname,'\\.','/','g')")
+;; (setlocal! suffixesadd (.. "init.lua," vim.bo.suffixesadd))
+;; (setlocal! textwidth 120)
 (tset vim.bo :include "^\\s*require")
 (tset vim.bo :includeexpr "substitute(v:fname,'\\.','/','g')")
 (tset vim.bo :suffixesadd (.. "init.lua," vim.bo.suffixesadd))

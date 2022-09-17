@@ -31,7 +31,7 @@
         :Terminal)
   (map! [n] :<leader>k :<cmd>DashWord<cr> "Dash Word")
   (map! [t] :<esc><esc>
-        `(vim.api.nvim_replace_termcodes "<C-\\><C-n" true true true)
+        `(vim.api.nvim_replace_termcodes "<C-\\><C-n" true true true) ; FIXME
         "Escape Terminal")
   (map! [is] :<C-j>
         (fn []
@@ -44,7 +44,7 @@
           (if (ls.choice_active) (ls.change_choice 1)))))
 
 (fn M.lsp [buf]
-  (map! [n :buffer] :gd (. (require :lspsaga.definition) :preview_definition)
+  (map! [n :buffer] :gd (. (require :lspsaga.definition) :peek_definition)
         "Preview Definition")
   (map! [n :buffer] :gD vim.lsp.buf.definition "Goto Definition")
   (map! [n :buffer] :gh (. (require :lspsaga.finder) :lsp_finder)
