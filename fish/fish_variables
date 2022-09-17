@@ -2,7 +2,6 @@
 # VERSION: 3.0
 SETUVAR --export EDITOR:nvim
 SETUVAR __fish_initialized:3400
-SETUVAR _fish_abbr_brup:brew\x20update\x20\x3e/dev/null\x202\x3e\x261\x20\x26\x26\x20brew\x20outdated
 SETUVAR _fish_abbr_cdtmp:cd\x20\x28mktemp\x20\x2dd\x29
 SETUVAR _fish_abbr_l:lsd\x20\x2dl
 SETUVAR _fish_abbr_la:lsd\x20\x2dlA

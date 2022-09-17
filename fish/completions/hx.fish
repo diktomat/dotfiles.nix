@@ -1,0 +1,1 @@
+/Users/bene/dev/helix/contrib/completion/hx.fish
