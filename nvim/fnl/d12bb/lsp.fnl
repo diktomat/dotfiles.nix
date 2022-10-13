@@ -14,11 +14,8 @@
   (vim.api.nvim_buf_set_option buf :formatexpr "v:lua.vim.lsp.formatexpr()")
   (if (not= client.name :null-ls)
       (do
-        ((. (require :d12bb.keymaps) :lsp) buf)
         (vim.api.nvim_buf_set_option buf :omnifunc "v:lua.vim.lsp.omnifunc")
-        (vim.api.nvim_buf_set_option buf :tagfunc "v:lua.vim.lsp.tagfunc"))
-      (vim.keymap.set :n :<leader>gq vim.lsp.buf.format
-                      {:desc "Format File" :buffer buf})))
+        (vim.api.nvim_buf_set_option buf :tagfunc "v:lua.vim.lsp.tagfunc"))))
 
 (let [go (require :go)]
   (go.setup {:dap_debug false

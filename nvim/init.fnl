@@ -43,7 +43,7 @@
 (require :d12bb.misc)
 (require :d12bb.cmp)
 (require :d12bb.lsp)
-((. (require :d12bb.keymaps) :general))
+(require :d12bb.keymaps)
 (require :d12bb.autocmds)
 
 (g! gruvbox_baby_background_color "dark")
