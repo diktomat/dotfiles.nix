@@ -9,8 +9,7 @@
                                                                     {:clear true})
                                 :buffer buf
                                 :desc "Autoformat on save"
-                                :callback (fn []
-                                            vim.lsp.buf.format)})
+                                :callback #(vim.lsp.buf.format)})
   (vim.api.nvim_buf_set_option buf :formatexpr "v:lua.vim.lsp.formatexpr()")
   (if (not= client.name :null-ls)
       (do
@@ -39,12 +38,14 @@
 (let [rust (require :rust-tools)]
   (rust.setup {:server {: capabilities
                         :on_attach (fn [client buf]
-                                     (vim.api.nvim_create_autocmd {:group (vim.api.nvim_create_augroup :codelens
+                                     (vim.api.nvim_create_autocmd [:BufEnter
+                                                                   :CursorHold
+                                                                   :InsertLeave]
+                                                                  {:group (vim.api.nvim_create_augroup :codelens
                                                                                                        {:clear true})
                                                                    :buffer buf
                                                                    :desc "Refresh Codelens"
-                                                                   :callback (fn []
-                                                                               (vim.lsp.codelens.refresh))})
+                                                                   :callback #(vim.lsp.codelens.refresh)})
                                      (vim.keymap.set :n :<leader>cl
                                                      vim.lsp.codelens.run
                                                      {:desc "Run Codelens"})
