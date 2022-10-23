@@ -1,7 +1,6 @@
 (import-macros {: map!} :hibiscus.vim)
 
-(local capabilities
-       ((. (require :cmp_nvim_lsp) :update_capabilities) (vim.lsp.protocol.make_client_capabilities)))
+(local capabilities ((. (require :cmp_nvim_lsp) :default_capabilities)))
 
 (fn lsp_attach [client buf]
   (vim.api.nvim_create_autocmd :BufWritePre

@@ -9,8 +9,6 @@
 
 ;; Misc
 (map! [n] :U :<cmd>redo<cr> :Redo)
-(map! [n] :<C-b> `((. (require :lspsaga.action) :smart_scroll_with_saga) (- 1)))
-(map! [n] :<C-f> `((. (require :lspsaga.action) :smart_scroll_with_saga) 1))
 (map! [i] :<C-l> #(if (ls.choice_active) (ls.change_choice 1)))
 (map! [is] :<C-j> #(if (ls.expand_or_jumpable) (ls.expand_or_jump)))
 (map! [is] :<C-k> #(if (ls.jumpable (- 1)) (ls.jump (- 1))))
