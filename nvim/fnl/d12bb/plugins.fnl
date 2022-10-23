@@ -1,7 +1,6 @@
 (import-macros {: packer : packer-setup : use!} :hibiscus.packer)
 
-(packer-setup {:display {:open_fn (fn []
-                                    ((. (require :packer.util) :float) {:border :rounded}))}})
+(packer-setup {:display {:open_fn #((. (require :packer.util) :float) {:border :rounded})}})
 
 ;; fnlfmt: skip
 (packer (use! :windwp/nvim-autopairs)
@@ -37,5 +36,6 @@
         (use! :nvim-treesitter/nvim-treesitter
               :run ":TSUpdate")
           (use! "https://git.sr.ht/~p00f/nvim-ts-rainbow")
+          (use! :nvim-treesitter/nvim-treesitter-context)
           (use! :nvim-treesitter/nvim-treesitter-textobjects)
         (use! :folke/which-key.nvim))

@@ -68,3 +68,6 @@
                                                        "[C" "@class.outer"
                                                        "[A" "@parameter.outer"
                                                        "[O" "@comment.outer"}}}}))
+
+(let [tsc (require :treesitter-context)]
+  (tsc.setup {:enable true :mode :topline}))
