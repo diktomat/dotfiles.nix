@@ -32,7 +32,7 @@
 (map! [n] :<leader>? tsb.commands "Command Palette")
 (map! [nv] :<leader>A "<cmd>Lspsaga code_action<cr>" "Code Action")
 (map! [n] :<leader>k "<cmd>Lspsaga hover_doc<cr>" "Hover Info")
-(map! [n] :<leader>r "<cmd>Lspsaga rename" "Rename Symbol")
+(map! [n] :<leader>r "<cmd>Lspsaga rename<cr>" "Rename Symbol")
 
 (map! [n] :<leader>h tsb.help_tags "Vim Help")
 (map! [n] :<leader>H tsb.man_pages "Man Pages")
