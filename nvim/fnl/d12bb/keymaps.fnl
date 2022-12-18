@@ -2,7 +2,6 @@
 
 (local wk (require :which-key))
 (local tsb (require :telescope.builtin))
-(local dash (require :dash))
 (local ls (require :luasnip))
 
 (wk.setup)
@@ -30,17 +29,16 @@
 (map! [n] :<leader>/ tsb.live_grep "Live Grep")
 (map! [n] :<leader>G tsb.diagnostics "Workspace Diagnostic Picker")
 (map! [n] :<leader>? tsb.commands "Command Palette")
-(map! [nv] :<leader>A "<cmd>Lspsaga code_action<cr>" "Code Action")
+(map! [nv] :<leader>a "<cmd>Lspsaga code_action<cr>" "Code Action")
+(map! [n] :<leader>h "<cmd>Lspsaga lsp_finder<cr>" "Symbol references")
 (map! [n] :<leader>k "<cmd>Lspsaga hover_doc<cr>" "Hover Info")
 (map! [n] :<leader>r "<cmd>Lspsaga rename<cr>" "Rename Symbol")
 
-(map! [n] :<leader>h tsb.help_tags "Vim Help")
-(map! [n] :<leader>H tsb.man_pages "Man Pages")
-(map! [n] :<leader>d dash.search :Dash)
+(map! [n] :<leader>H tsb.help_tags "Vim Help")
+(map! [n] :<leader>M tsb.man_pages "Man Pages")
 (map! [n] :<leader>gq vim.lsp.buf.format "Format Buffer")
 (map! [n] :<leader>og (. (require :d12bb.utils) :lazygit) :Lazygit)
 (map! [n] :<leader>ot "<cmd>Lspsaga open_floaterm<cr>" :Terminal)
-(map! [n] :<leader>K :<cmd>DashWord<cr> "Dash Word")
 (map! [n] :<leader>e "<cmd>Lspsaga show_line_diagnostics<cr>"
       "Explain Diagnostic")
 
@@ -81,4 +79,4 @@
 (wk.register {"]" {:name :Next...}})
 (map! [n] "]p" "}" "Goto Next Paragraph")
 (map! [n] "]<space>" :o "Add Newline below")
-(map! [n] "]d" "<cmd>Lspsaga diagnostic_jump_prev<cr>" "Goto Next Diagnostic")
+(map! [n] "]d" "<cmd>Lspsaga diagnostic_jump_next<cr>" "Goto Next Diagnostic")
