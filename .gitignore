@@ -15,3 +15,6 @@ helix/runtime
 asciinema/install-id
 op/config
 raycast
+nushell/history.txt
+nushell/zoxide.nu
+nushell/starship.nu
