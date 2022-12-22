@@ -9,9 +9,13 @@ if status is-interactive
 	zoxide init fish   |source
 end
 
-fish_add_path $CARGO_HOME/bin
-fish_add_path $GOPATH/bin
-fish_add_path $HOME/.local/bin
+set -x EDITOR nvim
+abbr -g cdtmp 'cd (mktemp -d)'
+abbr -g ls    'lsd'
+abbr -g l     'lsd -l'
+abbr -g la    'lsd -lA'
+abbr -g tree  'lsd --tree'
+abbr -g lg    'lazygit'
 
 # Auth sudo with Touch ID
 # Gets deleted with every system update or so
