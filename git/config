@@ -16,6 +16,7 @@
 [delta]
 	line-numbers = true
 	syntax-theme = gruvbox-dark
+	side-by-side = true
 [init]
 	defaultBranch = main
 [filter "lfs"]
