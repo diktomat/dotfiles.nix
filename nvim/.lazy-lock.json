@@ -13,6 +13,7 @@
   "neodev.nvim": { "branch": "main", "commit": "258b83f48405c6b530c09dd96950693664dc6bc0" },
   "null-ls.nvim": { "branch": "main", "commit": "6830a1ed04f89e6d556cb6bcc200433173004307" },
   "nvim-lspconfig": { "branch": "master", "commit": "22c87d6f48c4fb1daf33476450d0b14a64230809" },
+  "nvim-notify": { "branch": "master", "commit": "b005821516f1f37801a73067afd1cef2dbc4dfe8" },
   "nvim-treesitter": { "branch": "master", "commit": "69388e84c34d40c3d5c7d2f310db13276f2179e1" },
   "nvim-treesitter-context": { "branch": "master", "commit": "cacee4828152dd3a83736169ae61bbcd29a3d213" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "d816761ec1ea4a605689bc5f4111088459cf74d4" },

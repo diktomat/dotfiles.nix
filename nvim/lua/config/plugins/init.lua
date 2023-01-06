@@ -1,5 +1,11 @@
 return {
 	{
+		"rcarriga/nvim-notify",
+		config = function()
+			vim.notify = require("notify")
+		end
+	},
+	{
 		"folke/which-key.nvim",
 		config = function()
 			require("which-key").setup({
