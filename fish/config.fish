@@ -16,6 +16,7 @@ abbr -g l     'lsd -l'
 abbr -g la    'lsd -lA'
 abbr -g tree  'lsd --tree'
 abbr -g lg    'lazygit'
+abbr -g icat  'kitty +kitten icat'
 
 # Auth sudo with Touch ID
 # Gets deleted with every system update or so
