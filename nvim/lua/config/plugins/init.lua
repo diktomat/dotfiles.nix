@@ -3,32 +3,30 @@ return {
 		"rcarriga/nvim-notify",
 		config = function()
 			vim.notify = require("notify")
-		end
+		end,
 	},
 	{
 		"folke/which-key.nvim",
-		config = function()
-			require("which-key").setup({
-				plugins = {
-					spelling = {
-						enabled = true,
-					},
+		config = {
+			plugins = {
+				spelling = {
+					enabled = true,
 				},
-			})
-		end,
+			},
+		},
 	},
 	{
 		"echasnovski/mini.nvim",
 		config = function()
-			require("mini.comment").setup {}
+			require("mini.comment").setup({})
 			require("mini.completion").setup({
 				lsp_completion = {
 					source_func = "omnifunc",
-				}
+				},
 			})
-			require("mini.cursorword").setup {}
-			require("mini.pairs").setup {}
-		end
+			require("mini.cursorword").setup({})
+			require("mini.pairs").setup({})
+		end,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -48,9 +46,7 @@ return {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup()
-		end,
+		config = true,
 	},
 	{ "gpanders/editorconfig.nvim", version = "*" },
 	{
@@ -65,20 +61,16 @@ return {
 		dependencies = {
 			"kyazdani42/nvim-web-devicons",
 		},
-		config = function()
-			require("trouble").setup({
-				use_diagnostic_signs = true,
-			})
-		end,
+		config = {
+			use_diagnostic_signs = true,
+		},
 	},
 	{
 		"folke/todo-comments.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-		config = function()
-			require("todo-comments").setup()
-		end,
+		config = true,
 	},
 	{
 		"saecki/crates.nvim",
@@ -86,14 +78,12 @@ return {
 			"nvim-lua/plenary.nvim",
 			"jose-elias-alvarez/null-ls.nvim",
 		},
-		config = function()
-			require("crates").setup({
-				null_ls = {
-					enabled = true,
-					name = "crates.nvim",
-				},
-			})
-		end,
+		config = {
+			null_ls = {
+				enabled = true,
+				name = "crates.nvim",
+			},
+		},
 	},
 	{
 		"numToStr/FTerm.nvim",

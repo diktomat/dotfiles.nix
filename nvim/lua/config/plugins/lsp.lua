@@ -7,9 +7,7 @@ return {
 		"simrat39/symbols-outline.nvim",
 		{
 			"j-hui/fidget.nvim",
-			config = function()
-				require("fidget").setup()
-			end,
+			config = true,
 		},
 	},
 	config = function()
@@ -45,7 +43,7 @@ return {
 		require("null-ls").setup({
 			sources = {
 				require("null-ls").builtins.formatting.stylua,
-			}
+			},
 		})
 		require("symbols-outline").setup()
 	end,

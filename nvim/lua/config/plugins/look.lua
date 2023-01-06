@@ -32,28 +32,26 @@ return {
 	-- },
 	{
 		"nvim-lualine/lualine.nvim",
-		config = function()
-			require("lualine").setup({
-				options = {
-					theme = "catppuccin",
+		config = {
+			options = {
+				theme = "catppuccin",
+			},
+			extensions = {
+				"man",
+				"quickfix",
+				"symbols-outline",
+			},
+			sections = {
+				lualine_c = {
+					"filename",
+					{
+						require("lazy.status").updates,
+						cond = require("lazy.status").has_updates,
+						color = { fg = "#ff9e64" },
+					},
 				},
-				extensions = {
-					"man",
-					"quickfix",
-					"symbols-outline",
-				},
-				sections = {
-					lualine_c = {
-						"filename",
-						{
-							require("lazy.status").updates,
-							cond = require("lazy.status").has_updates,
-							color = { fg = "#ff9e64" },
-						}
-					}
-				}
-			})
-		end,
+			},
+		},
 	},
 	{
 		"anuvyklack/windows.nvim",
