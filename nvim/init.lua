@@ -11,14 +11,14 @@ vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.laststatus = 3
 vim.opt.list = true
-vim.opt.listchars = "tab:| ,multispace:·   ,lead:·,trail:·,extends:⇢,precedes:⇠,nbsp:+"
+vim.opt.listchars = "tab:| ,multispace:·   ,trail:·,extends:⇢,precedes:⇠,nbsp:+"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 5
 vim.opt.shell = "fish"
 -- vim.opt.shelltemp = false
 vim.opt.shiftwidth = 0
-vim.opt.signcolumn = "number"
+vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -44,6 +44,10 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup("config.plugins", {
 	lockfile = vim.fn.stdpath("config") .. "/.lazy-lock.json",
+	checker = "enabled",
+	defaults = {
+		version = "*",
+	}
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "TermOpen" }, {
