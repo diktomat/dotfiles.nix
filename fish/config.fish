@@ -1,26 +1,34 @@
-eval (/opt/homebrew/bin/brew shellenv)
+test -d /opt/homebrew && eval (/opt/homebrew/bin/brew shellenv)
 
 # if status is-login
 #	Commands to run in login sessions can go here
 # end
 
 if status is-interactive
-	starship init fish |source
-	zoxide init fish   |source
+	which -s starship && starship init fish |source
+	which -s zoxide && zoxide init fish |source
 end
 
-set -x EDITOR nvim
+set -x EDITOR vim
+which -s nvim && set -x EDITOR nvim
 abbr -g cdtmp 'cd (mktemp -d)'
-abbr -g ls    'lsd'
-abbr -g l     'lsd -l'
-abbr -g la    'lsd -lA'
-abbr -g tree  'lsd --tree'
+if which -s lsd
+	abbr -g ls    'lsd'
+	abbr -g l     'lsd -l'
+	abbr -g la    'lsd -lA'
+	abbr -g tree  'lsd --tree'
+end
 abbr -g lg    'lazygit'
-abbr -g icat  'kitty +kitten icat'
+if which -s kitty
+	abbr -g icat  'kitty +kitten icat'
+	abbr -g kdiff 'kitty +kitten diff'
+    abbr -g ssh   'kitty +kitten ssh'
+	function krg --wraps rg; kitty +kitten hyperlinked_grep $argv; end
+end
 
 # Auth sudo with Touch ID
 # Gets deleted with every system update or so
-if not grep pam_tid /etc/pam.d/sudo > /dev/null 2>&1
+if test (uname) = Darwin && not grep pam_tid /etc/pam.d/sudo > /dev/null 2>&1
 	echo 'Adding Touch ID to sudo again...'
 	echo "sudo sed -i '.bak' '/sufficient/p; s/smartcard/tid/' /etc/pam.d/sudo"
 	sudo sed -i '.bak' '/sufficient/p; s/smartcard/tid/' /etc/pam.d/sudo
