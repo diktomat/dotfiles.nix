@@ -15,7 +15,7 @@
 	gpgSign = true
 [delta]
 	line-numbers = true
-	syntax-theme = gruvbox-dark
+	syntax-theme = Catppuccin-macchiato
 	side-by-side = true
 [init]
 	defaultBranch = main

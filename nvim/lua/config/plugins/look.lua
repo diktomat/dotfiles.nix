@@ -1,18 +1,41 @@
 return {
 	{
-		"luisiacc/gruvbox-baby",
+		"catppuccin/nvim",
+		name = "catppuccin",
 		config = function()
-			vim.g.gruvbox_baby_background_color = "dark"
-			vim.g.gruvbox_baby_telescope_theme = 1
-			vim.cmd.colorscheme("gruvbox-baby")
+			require("catppuccin").setup({
+				flavour = "macchiato",
+				integrations = {
+					gitsigns = true,
+					mini = true,
+					native_lsp = { enabled = true },
+					notify = true,
+					treesitter = true,
+					ts_rainbow = true,
+					symbols_outline = true,
+					telescope = true,
+					lsp_trouble = true,
+					which_key = true,
+					fidget = true,
+				},
+			})
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
+	-- {
+	-- 	"luisiacc/gruvbox-baby",
+	-- 	config = function()
+	-- 		vim.g.gruvbox_baby_background_color = "dark"
+	-- 		vim.g.gruvbox_baby_telescope_theme = 1
+	-- 		vim.cmd.colorscheme("gruvbox-baby")
+	-- 	end,
+	-- },
 	{
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			require("lualine").setup({
 				options = {
-					theme = "gruvbox-baby",
+					theme = "catppuccin",
 				},
 				extensions = {
 					"man",
