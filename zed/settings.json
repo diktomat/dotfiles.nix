@@ -1,0 +1,8 @@
+{
+    "theme": "One Dark",
+    "buffer_font_family": "Liga SFMono Nerd Font",
+    "buffer_font_size": 14,
+    "projects_online_by_default": false,
+    "soft_wrap": "editor_width",
+    "hard_tabs": true
+}

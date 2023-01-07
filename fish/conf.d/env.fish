@@ -24,7 +24,7 @@ set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -gx RUST_BACKTRACE 1
 
 # Less
-set -gx LESS "--ignore-case --incsearch --HILITE-UNREAD --tabs=4 --prompt='?n?f%f.:?e?x Next\: %x:(EOF).:?p%pb\%...?m (%i/%m).'"
+set -gx LESS "--ignore-case --incsearch --HILITE-UNREAD --tabs=4 --prompt=?n?f%f.:?e?x Next\: %x:(EOF).:?p%pb\%...?m (%i/%m)."
 set -gx LESSHISTFILE /dev/null
 
 # Man with bat
