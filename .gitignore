@@ -7,7 +7,6 @@ other/home/ssh/**
 # Neovim
 nvim/spell
 nvim/plugin/packer_compiled.lua
-nvim/ftplugin/*.lua
 
 lazygit/state.yml
 exercism

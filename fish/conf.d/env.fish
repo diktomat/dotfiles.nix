@@ -24,16 +24,14 @@ set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -gx RUST_BACKTRACE 1
 
 # Less
+set -gx LESS "--ignore-case --incsearch --HILITE-UNREAD --tabs=4 --prompt='?n?f%f.:?e?x Next\: %x:(EOF).:?p%pb\%...?m (%i/%m).'"
 set -gx LESSHISTFILE /dev/null
 
-# Man in nvim
-set -gx MANPAGER "nvim +Man!"
+# Man with bat
+# set -gx MANPAGER "nvim +Man!"
+set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 # PATH
 fish_add_path -g $GOPATH/bin
 fish_add_path -g $CARGO_HOME/bin
 fish_add_path -g $HOME/.local/bin
-
-# PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/opt/homebrew/lib/ruby/gems/3.1.0/bin:/opt/homebrew/opt/ruby/bin:/Users/bene/.local/share/go/bin:/Users/bene/.local/share/cargo/bin:/Users/bene/.local/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/usr/local/MacGPG2/bin:/Library/TeX/texbin:/Applications/kitty.app/Contents/MacOS
-# MANPATH=/opt/homebrew/share/man:/usr/share/man:/usr/local/share/man:/usr/local/MacGPG2/share/man:/Library/TeX/Distributions/.DefaultTeX/Contents/Man:/Applications/kitty.app/Contents/Resources/man:
-
