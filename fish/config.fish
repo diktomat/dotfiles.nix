@@ -1,29 +1,28 @@
 test -d /opt/homebrew && eval (/opt/homebrew/bin/brew shellenv)
-
-# if status is-login
-#	Commands to run in login sessions can go here
-# end
-
-if status is-interactive
-	which -s starship && starship init fish |source
-	which -s zoxide   && zoxide init fish   |source
-end
-
 set -x EDITOR vim
-which -s nvim && set -x EDITOR nvim
-which -s bat  && abbr -g cat bat
-abbr -g cdtmp 'cd (mktemp -d)'
-abbr -g lg 'lazygit'
+
+status is-interactive || exit
+
+which -s starship && starship init fish |source
+which -s zoxide   && zoxide init fish   |source
+
+function last_history_item; echo $history[1]; end
+abbr !! --position anywhere --function last_history_item
+
+abbr cdtmp 'cd (mktemp -d)'
+abbr lg lazygit
+which -s bat  && abbr cat bat
+
 if which -s lsd
-	abbr -g ls    'lsd'
-	abbr -g l     'lsd -l'
-	abbr -g la    'lsd -lA'
-	abbr -g tree  'lsd --tree'
+	abbr ls    lsd
+	abbr l     lsd -l
+	abbr la    lsd -lA
+	abbr tree  lsd --tree
 end
 if which -s kitty
-	abbr -g icat  'kitty +kitten icat'
-	abbr -g kdiff 'kitty +kitten diff'
-    abbr -g ssh   'kitty +kitten ssh'
+	abbr icat  kitty +kitten icat
+	abbr kdiff kitty +kitten diff
+	abbr ssh   kitty +kitten ssh
 	function krg --wraps rg; kitty +kitten hyperlinked_grep $argv; end
 end
 

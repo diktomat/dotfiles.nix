@@ -1,11 +1,7 @@
 # XDG Base Directory Specification
 # https://wiki.archlinux.org/title/XDG_Base_Directory#Support
 # set here instead of universal because $HOME would else be stored extended
-if test (uname -s) = Darwin
-	set -gx XDG_CACHE_HOME  $HOME/Library/Caches
-else
-	set -gx XDG_CACHE_HOME $HOME/.cache
-end
+set -gx XDG_CACHE_HOME  $HOME/.cache
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx XDG_DATA_HOME   $HOME/.local/share
 set -gx XDG_STATE_HOME  $HOME/.local/state
