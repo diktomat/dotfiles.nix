@@ -3,6 +3,7 @@ set -x EDITOR vim
 
 status is-interactive || exit
 
+which -s rbenv    && rbenv init - fish  |source
 which -s starship && starship init fish |source
 which -s zoxide   && zoxide init fish   |source
 
@@ -12,6 +13,7 @@ abbr !! --position anywhere --function last_history_item
 abbr cdtmp 'cd (mktemp -d)'
 abbr lg lazygit
 which -s bat  && abbr cat bat
+abbr --set-cursor clippy-ped cargo clippy % -- -W clippy::pedantic -Aclippy::must_use_candidate -Aclippy::missing_panics_doc -Wclippy::nursery
 
 if which -s lsd
 	abbr ls    lsd

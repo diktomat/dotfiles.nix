@@ -18,6 +18,8 @@ set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgreprc
 set -gx CARGO_HOME  $XDG_DATA_HOME/cargo
 set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -gx RUST_BACKTRACE 1
+#    rbenv
+set -gx RBENV_ROOT $XDG_DATA_HOME/rbenv
 
 # Less
 set -gx LESS "--ignore-case --incsearch --HILITE-UNREAD --tabs=4 --prompt=?n?f%f.:?e?x Next\: %x:(EOF).:?p%pb\%...?m (%i/%m)."
