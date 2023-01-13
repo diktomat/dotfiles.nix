@@ -1,0 +1,12 @@
+default_job = "nextest"
+
+[jobs]
+
+[jobs.nextest]
+command = ["cargo", "nextest", "run", "--color", "always"]
+watch = ["test"]
+need_stdout = true
+
+[keybindings]
+n = "job:nextest"
+m = "job:clippy-all"

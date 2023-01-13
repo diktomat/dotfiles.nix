@@ -18,6 +18,17 @@ for file in $HOMESRC/*; do
 	fi
 done
 
+for file in $CONFIG/other/AppSupport/*; do
+	dest=$(basename $file)
+	if test -e $HOME/Library/Application\ Support/$dest; then
+		echo $dest already exists
+		errors="$errors\n$dest already exists"
+	else
+		echo "Linking $file..."
+		ln -s "$file" "$HOME/Library/Application Support/$dest"
+	fi
+done
+
 echo Bundleing brew...
 brew bundle --file $CONFIG/other/Brewfile
 if $? -ne 0; then
