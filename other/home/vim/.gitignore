@@ -1,0 +1,7 @@
+autoload/plug.vim
+plugged/*
+swap/*
+undo/*
+systags/*
+.netrwhist
+viminfo

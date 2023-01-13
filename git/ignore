@@ -26,5 +26,6 @@ Temporary Items
 venv
 node_modules
 .sass-cache
+tags
 
 *.bak
