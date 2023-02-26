@@ -53,3 +53,5 @@ let g:mucomplete#completion_delay = 500
 
 nnoremap <leader>f <cmd>GitFiles<cr>
 nnoremap <leader>F <cmd>Files<cr>
+
+colorscheme base16-default-dark

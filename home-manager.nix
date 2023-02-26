@@ -99,6 +99,7 @@
 			difftastic.enable = true;
 			difftastic.background = "dark";
 			extraConfig = {
+				credential.helper = "osxkeychain";
 				init.defaultBranch = "main";
 				"filter \"lfs\"" = {
 					clean = "${pkgs.git-lfs}/bin/git-lfs clean -- %f";
@@ -193,7 +194,7 @@
 			enable = true;
 			defaultEditor = true;
 			extraConfig = builtins.readFile ./extraConfig/vimrc;
-			plugins = with pkgs.vimPlugins; [fzf-vim rust-vim vim-mucomplete vim-polyglot];
+			plugins = with pkgs.vimPlugins; [base16-vim fzf-vim rust-vim vim-mucomplete vim-polyglot];
 		};
 		yt-dlp = {
 			enable = true;
