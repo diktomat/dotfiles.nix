@@ -13,23 +13,32 @@
 			extra-nix-path = nixpkgs=flake:nixpkgs
 		'';
 	};
+	nixpkgs.config = {
+		packageOverrides = pkgs: {
+			nerdfonts = pkgs.nerdfonts.override {
+				fonts = ["NerdFontsSymbolsOnly"];
+			};
+		};
+	};
 	environment = {
 		shells = [pkgs.fish];
 		loginShell = pkgs.fish;
 	};
+	fonts.fontDir.enable = true;
+	fonts.fonts = with pkgs; [ iosevka-bin nerdfonts ];
 	homebrew = {
 		enable = true;
 		caskArgs.no_quarantine = true;
 		global.brewfile = true;
-		taps = ["homebrew/cask-fonts"];
+		taps = [];
 		brews = [];
 		casks = [
 			"1password" "aldente" "arc" "backblaze" "buckets" "calibre" "cheatsheet"
-			"coconutbattery" "deepl" "docker" "font-iosevka" "font-symbols-only-nerd-font" "github"
-			"gitup" "gpg-suite" "jdownloader" "keka" "keyboardcleantool" "kindle" "kitty" "lapce"
-			"moneymoney" "moom" "netnewswire" "nvidia-geforce-now" "orion" "portfolioperformance"
-			"raspberry-pi-imager" "raycast" "signal" "steam" "sublime-merge" "sublime-text"
-			"syntax-highlight" "transmission" "utm"	"xcodes" "ytmdesktop-youtube-music" "zoom"
+			"coconutbattery" "deepl" "docker" "github" "gitup" "gpg-suite" "jdownloader" "keka"
+			"keyboardcleantool" "kindle" "kitty" "lapce" "moneymoney" "moom" "netnewswire"
+			"nvidia-geforce-now" "orion" "portfolioperformance" "raspberry-pi-imager" "raycast"
+			"signal" "steam" "sublime-merge" "sublime-text" "syntax-highlight" "transmission" "utm"
+			"xcodes" "ytmdesktop-youtube-music" "zoom"
 		];
 		masApps = {
 			"1Blocker" = 1365531024;
