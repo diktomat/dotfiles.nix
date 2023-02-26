@@ -21,17 +21,26 @@
 		enable = true;
 		caskArgs.no_quarantine = true;
 		global.brewfile = true;
-		taps = [];
+		taps = ["homebrew/cask-fonts"];
 		brews = [];
-		casks = [];
+		casks = [
+			"1password" "aldente" "arc" "backblaze" "buckets" "calibre" "cheatsheet"
+			"coconutbattery" "deepl" "docker" "font-iosevka" "font-symbols-only-nerd-font" "github"
+			"gitup" "gpg-suite" "jdownloader" "keka" "keyboardcleantool" "kindle" "kitty" "lapce"
+			"moneymoney" "moom" "netnewswire" "nvidia-geforce-now" "orion" "portfolioperformance"
+			"raspberry-pi-imager" "raycast" "signal" "steam" "sublime-merge" "sublime-text"
+			"syntax-highlight" "transmission" "utm"	"xcodes" "ytmdesktop-youtube-music" "zoom"
+		];
 		masApps = {};
-		# onActivation.cleanup = "uninstall";
+		onActivation.cleanup = "uninstall";
 	};
+	programs.bash.enable = true;
 	programs.fish = {
 		enable = true;
 		useBabelfish = true;
 		babelfishPackage = pkgs.babelfish;
 	};
+	programs.zsh.enable = true;
 	system.defaults = {
 		dock.autohide = true;
 		dock.autohide-delay = 0.0;
