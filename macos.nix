@@ -31,7 +31,38 @@
 			"raspberry-pi-imager" "raycast" "signal" "steam" "sublime-merge" "sublime-text"
 			"syntax-highlight" "transmission" "utm"	"xcodes" "ytmdesktop-youtube-music" "zoom"
 		];
-		masApps = {};
+		masApps = {
+			"1Blocker" = 1365531024;
+			"1Password for Safari" = 1569813296;
+			"Affinity Photo" = 824183456;
+			Agenda = 1287445660;
+			AusweisApp2 = 948660805;
+			Bear = 1091189122;
+			Cascadea = 1432182561;
+			Consent-O-Matic = 1606897889;
+			CotEditor = 1024640650;
+			Darkroom = 953286746;
+			Developer = 640199958;
+			FakespotSafari = 1592541616;
+			Fantastical = 975937182;
+			GameTrack = 1136800740;
+			GoodNotes = 1444383602;
+			Grocery = 1195676848;
+			Keynote = 409183694;
+			LanguageTool = 1534275760;
+			Mela = 1568924476;
+			MusicHarbor = 1440405750;
+			NepTunes = 1006739057;
+			Numbers = 409203825;
+			Pages = 409201541;
+			"Pixelmator Pro" = 1289583905;
+			Reeder = 1529448980;
+			StopTheMadness = 1376402589;
+			Telegram = 747648890;
+			TestFlight = 899247664;
+			Things = 904280696;
+			WhatsApp = 1147396723;
+		};
 		onActivation.cleanup = "uninstall";
 	};
 	programs.bash.enable = true;
