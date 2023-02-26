@@ -21,7 +21,8 @@
 			};
 		};
 	};
-	home.packages = with pkgs; [comma fd ripgrep];
+	home.packages = with pkgs; [bacon comma fd ripgrep];
+	home.file."Library/Application Support/org.dystroy.bacon/prefs.toml".source = ./extraConfig/bacon.toml;
 	# launchd.enable = true;
 	# launchd.agents.nix-index = {}; TODO: weekly nix-index update
 	programs = {
