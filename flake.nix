@@ -1,8 +1,7 @@
 # To get started:
-#	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-#	nix build .#darwinConfigurations.Benedikts-MBP.system
-#	./result/sw/bin/darwin-rebuild switch --flake .#Benedikts-MBP
-
+# curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+# nix build .#darwinConfigurations.Benedikts-MBP.system
+# ./result/sw/bin/darwin-rebuild switch --flake .#Benedikts-MBP
 {
 	description = "d12bb's dotfiles";
 	inputs = {
@@ -17,7 +16,13 @@
 		};
 	};
 
-	outputs = inputs@{self, darwin, home-manager, nixpkgs, ...}: {
+	outputs = inputs @ {
+		self,
+		darwin,
+		home-manager,
+		nixpkgs,
+		...
+	}: {
 		darwinConfigurations."Benedikts-MBP" = darwin.lib.darwinSystem {
 			system = "aarch64-darwin";
 			modules = [

@@ -1,4 +1,9 @@
-{ config, pkgs, nixpkgs, ...}: {
+{
+	config,
+	pkgs,
+	nixpkgs,
+	...
+}: {
 	services.nix-daemon.enable = true;
 	nix = {
 		package = pkgs.nixUnstable;
