@@ -21,6 +21,9 @@
 			};
 		};
 	};
+	home.packages = with pkgs; [comma fd ripgrep];
+	# launchd.enable = true;
+	# launchd.agents.nix-index = {}; TODO: weekly nix-index update
 	programs = {
 		bat = {
 			enable = true;
@@ -75,6 +78,16 @@
 				la = "lsd -lA";
 				tree = "lsd --tree";
 			};
+		};
+		fzf = {
+			enable = true;
+			changeDirWidgetCommand = "fd --hidden --color always --type directory";
+			changeDirWidgetOptions = ["--preview 'lsd --color always --icon always {}'"];
+			defaultCommand = "fd --hidden --color always";
+			defaultOptions = ["--ansi" "--tabstop=4" "--preview='bat -p --color=always {}'" "--info=inline" "--tiebreak=length"];
+			fileWidgetCommand = "fd --hidden --color always --search-path \$dir";
+			fileWidgetOptions = [];
+			historyWidgetOptions = ["--preview 'echo {} |bat -l fish -p --color=always'" "--preview-window=down:3:wrap" "--reverse"];
 		};
 		git = {
 			enable = true;
@@ -166,6 +179,7 @@
 				sorting.dir-grouping = "first";
 			};
 		};
+		nix-index.enable = true;
 		ssh = {
 			enable = true;
 			# TODO
@@ -175,7 +189,25 @@
 			enable = true;
 			settings.updates.auto_update = true;
 		};
+		vim = {
+			enable = true;
+			defaultEditor = true;
+			extraConfig = builtins.readFile ./extraConfig/vimrc;
+			plugins = with pkgs.vimPlugins; [fzf-vim rust-vim vim-mucomplete vim-polyglot];
+		};
+		yt-dlp = {
+			enable = true;
+			settings = {
+				embed-chapters = true;
+				embed-metadata = true;
+				embed-subs = true;
+				embed-thumbnail = true;
+				format-sort =  "ext";
+				output = "%(title)s.%(ext)s";
+				xattrs = true;
+			};
+		};
 		zoxide.enable = true;
 	};
-	home.packages = with pkgs; [fd ripgrep];
+	xdg.enable = true;
 }

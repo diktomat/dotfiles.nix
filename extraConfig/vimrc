@@ -1,0 +1,55 @@
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
+
+let mapleader=" "
+set autoread
+set colorcolumn=+1
+set completeopt=menuone,noselect
+set directory^=~/.vim/swap//
+set formatoptions+=j
+set history=1000
+set ignorecase
+set laststatus=2
+set list
+set listchars=tab:\|\ ,multispace:·\ \ \ ,trail:·,extends:⇢,precedes:⇠,nbsp:+
+set number
+set relativenumber
+set shiftwidth=0
+set shortmess=atToOc
+set sidescroll=1
+set sidescrolloff=2
+set smartcase
+set smarttab
+set splitbelow
+set splitright
+set tabstop=4
+set termguicolors
+set undodir=~/.vim/undo
+set undofile
+set viminfofile=~/.vim/viminfo
+set wildmode=longest,full
+set wildoptions=pum,fuzzy
+if executable("rg")
+	set grepprg=rg\ --vimgrep
+	set grepformat=%f:%l:%c:%m
+endif
+autocmd Filetype *
+\	if &omnifunc == "" |
+\		setl omnifunc=syntaxcomplete#Complete |
+\	endif
+
+" let g:ftplugin_rust_source_path = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/library"
+let g:rust_recommended_style = 0
+let g:rustfmt_autosave_if_config_present = 1
+let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#completion_delay = 500
+" let g:mucomplete#chains = {
+" \	'default': {
+" \		'default': ['omni', 'tags', 'incl', 'path', 'uspl'],
+" \		'.*string.*': ['path'],
+" \		'.*comment.*': ['uspl']
+" \	}
+" \ }
+
+nnoremap <leader>f <cmd>GitFiles<cr>
+nnoremap <leader>F <cmd>Files<cr>
