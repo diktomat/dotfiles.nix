@@ -16,7 +16,7 @@
 				indent_style = "tab";
 				indent_size = 4;
 			};
-			"{*.yml,*.yaml,*.nim}" = {
+			"{*.yml,*.yaml,*.nim}" = { # don't support using superior indention
 				indent_style = "space";
 			};
 		};
@@ -24,7 +24,7 @@
 	home.packages = with pkgs; [bacon comma fd ripgrep];
 	home.file."Library/Application Support/org.dystroy.bacon/prefs.toml".source = ./extraConfig/bacon.toml;
 	# launchd.enable = true;
-	# launchd.agents.nix-index = {}; TODO: weekly nix-index update
+	# launchd.agents.nix-index = {}; TODO: launchd weekly nix-index update
 	programs = {
 		bat = {
 			enable = true;
@@ -61,7 +61,7 @@
 			];
 		};
 		fish = {
-			# TODO: complete config
+			# TODO: fish complete config
 			enable = true;
 			functions = {};
 			interactiveShellInit = ''
@@ -69,7 +69,8 @@
 				abbr !! --position anywhere --function last_history_item
 				abbr --set-cursor clippy-ped cargo clippy % -- -W clippy::pedantic -Aclippy::must_use_candidate -Aclippy::missing_panics_doc -Wclippy::nursery
 			'';
-			loginShellInit = "fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/wrappers/bin /etc/profiles/per-user/$USER/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin"; # https://github.com/LnL7/nix-darwin/issues/122
+			# https://github.com/LnL7/nix-darwin/issues/122
+			loginShellInit = "fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/wrappers/bin /etc/profiles/per-user/$USER/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin";
 			shellInit = "test -d /opt/homebrew && eval (/opt/homebrew/bin/brew shellenv)";
 			shellAbbrs = {
 				cat = "bat";
@@ -82,11 +83,11 @@
 		};
 		fzf = {
 			enable = true;
-			changeDirWidgetCommand = "fd --hidden --color always --type directory";
+			changeDirWidgetCommand = "${pkgs.fd}/bin/fd --hidden --color always --type directory";
 			changeDirWidgetOptions = ["--preview 'lsd --color always --icon always {}'"];
-			defaultCommand = "fd --hidden --color always";
+			defaultCommand = "${pkgs.fd}/bin/fd --hidden --color always";
 			defaultOptions = ["--ansi" "--tabstop=4" "--preview='bat -p --color=always {}'" "--info=inline" "--tiebreak=length"];
-			fileWidgetCommand = "fd --hidden --color always --search-path \$dir";
+			fileWidgetCommand = "${pkgs.fd}/bin/fd --hidden --color always --search-path \$dir";
 			fileWidgetOptions = [];
 			historyWidgetOptions = ["--preview 'echo {} |bat -l fish -p --color=always'" "--preview-window=down:3:wrap" "--reverse"];
 		};
@@ -109,7 +110,7 @@
 					required = true;
 				};
 			};
-			ignores = [
+			ignores = [ # TODO: gitignore auslagern?
 				"Desktop.ini"
 				"._*"
 				"Thumbs.db"
@@ -159,7 +160,7 @@
 					line-number = "relative";
 					cursorline = true;
 					indent-guides.render = true;
-					shell = ["fish" "-c"];
+					shell = ["${pkgs.fish}/bin/fish" "-c"];
 					cursorshape.insert = "bar";
 					whitespace.render.newline = "all";
 					whitespace.characters.newline = "↵";
@@ -184,9 +185,9 @@
 		nix-index.enable = true;
 		ssh = {
 			enable = true;
-			# TODO
+			# TODO: ssh config
 		};
-		starship.enable = true; # TODO: config
+		starship.enable = true; # TODO: starship config
 		tealdeer = {
 			enable = true;
 			settings.updates.auto_update = true;
@@ -212,4 +213,5 @@
 		zoxide.enable = true;
 	};
 	xdg.enable = true;
+	# TODO: xdg.file something for ripgreprc, don't forget setting $RIPGREP_CONFIG_PATH
 }
