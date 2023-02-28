@@ -226,7 +226,37 @@
 			enable = true;
 			# TODO: ssh config
 		};
-		starship.enable = true; # TODO: starship config
+		starship = {
+			enable = true;
+			settings = {
+				directory.fish_style_pwd_dir_length = 1;
+				directory.read_only = " ";
+				# Nerd Font Symbols
+				aws.symbol = "  ";
+				conda.symbol = " ";
+				dart.symbol = " ";
+				docker_context.symbol = " ";
+				elixir.symbol = " ";
+				elm.symbol = " ";
+				git_branch.symbol = " ";
+				golang.symbol = " ";
+				hg_branch.symbol = " ";
+				java.symbol = " ";
+				julia.symbol = " ";
+				memory_usage.symbol = " ";
+				nim.symbol = " ";
+				nix_shell.symbol = " ";
+				package.symbol = " ";
+				perl.symbol = " ";
+				php.symbol = " ";
+				python.symbol = " ";
+				ruby.symbol = " ";
+				rust.symbol = " ";
+				scala.symbol = " ";
+				shlvl.symbol = " ";
+				swift.symbol = "ﯣ ";
+			};
+		};
 		tealdeer = {
 			enable = true;
 			settings.updates.auto_update = true;
