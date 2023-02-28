@@ -252,6 +252,7 @@
 		zoxide.enable = true;
 	};
 	xdg.enable = true;
+	xdg.configFile."fd/ignore".source = ./extraConfig/fdignore;
 	xdg.configFile."kitty/open-actions.conf".text = ''
 # Fragment == line number, fragments are generated
 # by the hyperlink_grep kitten and nothing else so far.
@@ -277,5 +278,4 @@ env EDITOR=vim
 --engine=auto
 --smart-case
 '';
-	# TODO: xdg.file something for ripgreprc, don't forget setting $RIPGREP_CONFIG_PATH
 }
