@@ -22,6 +22,7 @@
 		};
 	};
 	home.packages = with pkgs; [bacon comma fd ripgrep];
+	home.file.".gnupg/gpg-agent.conf".text = "pinentry-program /usr/local/MacGPG2/libexec/pinentry-mac.app/Contents/MacOS/pinentry-mac";
 	home.file."Library/Application Support/org.dystroy.bacon/prefs.toml".source = ./extraConfig/bacon.toml;
 	home.sessionPath = [
 		"$HOME/.local/bin"
@@ -157,7 +158,13 @@
 			# };
 		};
 		gitui.enable = true;
-		gpg.enable = true;
+		gpg = {
+			enable = true;
+			settings = {
+				auto-key-retrieve = true;
+				default-key = "FDD2314C902AFE16DCF6A5A301C9C6235615FB81";
+			};
+		};
 		helix = {
 			enable = true;
 			settings = {
