@@ -23,6 +23,12 @@
 	};
 	home.packages = with pkgs; [bacon comma fd ripgrep];
 	home.file."Library/Application Support/org.dystroy.bacon/prefs.toml".source = ./extraConfig/bacon.toml;
+	home.sessionPath = [
+		"$HOME/.local/bin"
+	];
+	home.sessionVariables = {
+		RIPGREP_CONFIG_PATH = "${config.xdg.configHome}/ripgreprc";
+	};
 	# launchd.enable = true;
 	# launchd.agents.nix-index = {}; TODO: launchd weekly nix-index update
 	programs = {
@@ -266,6 +272,10 @@ action launch --type=overlay kitty +kitten icat --hold ''${FILE_PATH}
 	xdg.configFile."kitty/ssh.conf".text = ''
 copy .vim .config/fish
 env EDITOR=vim
+'';
+	xdg.configFile."ripgreprc".text = ''
+--engine=auto
+--smart-case
 '';
 	# TODO: xdg.file something for ripgreprc, don't forget setting $RIPGREP_CONFIG_PATH
 }
