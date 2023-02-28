@@ -231,7 +231,15 @@
 		nix-index.enable = true;
 		ssh = {
 			enable = true;
-			# TODO: ssh config
+			extraConfig = ''
+IdentityFile ~/.ssh/id_rsa
+UseKeychain yes
+AddKeysToAgent yes
+'';
+			matchBlocks."github.com" = {
+				identityFile = "~/.ssh/id_github";
+				identitiesOnly = true;
+			};
 		};
 		starship = {
 			enable = true;
