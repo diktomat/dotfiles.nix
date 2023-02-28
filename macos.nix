@@ -35,7 +35,7 @@
 		casks = [
 			"1password" "aldente" "arc" "backblaze" "buckets" "calibre" "cheatsheet"
 			"coconutbattery" "deepl" "docker" "github" "gitup" "gpg-suite" "jdownloader" "keka"
-			"keyboardcleantool" "kindle" "kitty" "lapce" "moneymoney" "moom" "netnewswire"
+			"keyboardcleantool" "kindle" "lapce" "moneymoney" "moom" "netnewswire"
 			"nvidia-geforce-now" "orion" "portfolioperformance" "raspberry-pi-imager" "raycast"
 			"signal" "steam" "sublime-merge" "sublime-text" "syntax-highlight" "transmission" "utm"
 			"xcodes" "ytmdesktop-youtube-music" "zoom"

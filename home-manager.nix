@@ -161,7 +161,7 @@
 					cursorline = true;
 					indent-guides.render = true;
 					shell = ["${pkgs.fish}/bin/fish" "-c"];
-					cursorshape.insert = "bar";
+					cursor-shape.insert = "bar";
 					whitespace.render.newline = "all";
 					whitespace.characters.newline = "↵";
 					whitespace.characters.nbsp = "+";
@@ -172,6 +172,39 @@
 					};
 				};
 			};
+		};
+		kitty = {
+			# extra config files at xdg.configFile.* below
+			enable = true;
+			font.package = pkgs.iosevka-bin;
+			font.name = "Iosevka Term";
+			font.size = 14;
+			keybindings = {
+				"cmd+enter" = "launch --cwd=current --type=window";
+				"cmd+]" = "next_window";
+				"cmd+[" = "previous_window";
+				"cmd+equal" = "change_font_size current +2.0";
+				"cmd+minus" = "change_font_size current -2.0";
+				"cmd+0" = "change_font_size current 0";
+			};
+			settings = {
+				disable_ligatures = "cursor";
+				enabled_layouts = "tall,fat,grid,stack";
+				initial_window_height = "24c";
+				initial_window_width = "95c";
+				macos_option_as_alt = "left";
+				remember_window_size = false;
+				scrollback_lines = 10000;
+				scrollback_pager_history_size = 1024;
+				shell_integration = "enabled";
+				# https://sw.kovidgoyal.net/kitty/faq/#kitty-is-not-able-to-use-my-favorite-font
+				symbol_map = "U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0C8,U+E0CA,U+E0CC-U+E0D2,U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E634,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF Symbols Nerd Font Mono";
+				tab_activity_symbol = "!";
+				tab_bar_edge = "top";
+				tab_bar_style = "powerline";
+				tab_powerline_style = "angled";
+			};
+			theme = "Catppuccin-Macchiato";
 		};
 		lsd = {
 			enable = true;
@@ -213,5 +246,26 @@
 		zoxide.enable = true;
 	};
 	xdg.enable = true;
+	xdg.configFile."kitty/open-actions.conf".text = ''
+# Fragment == line number, fragments are generated
+# by the hyperlink_grep kitten and nothing else so far.
+protocol file
+fragment_matches [0-9]+
+action launch --type=overlay --cwd=current vim +''${FRAGMENT} ''${FILE_PATH}
+
+# Open text files without fragments in bat
+protocol file
+mime text/*
+action launch --type=overlay --cwd=current bat --paging=always ''${FILE_PATH}
+
+# Open images using the icat kitten
+protocol file
+mime image/*
+action launch --type=overlay kitty +kitten icat --hold ''${FILE_PATH}
+'';
+	xdg.configFile."kitty/ssh.conf".text = ''
+copy .vim .config/fish
+env EDITOR=vim
+'';
 	# TODO: xdg.file something for ripgreprc, don't forget setting $RIPGREP_CONFIG_PATH
 }
