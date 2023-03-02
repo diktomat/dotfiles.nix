@@ -36,9 +36,6 @@
 		RIPGREP_CONFIG_PATH = "${config.xdg.configHome}/ripgreprc";
 	};
 
-	# launchd.enable = true;
-	# launchd.agents.nix-index = {}; TODO: launchd weekly nix-index update
-
 	programs = {
 		bat = {
 			enable = true;

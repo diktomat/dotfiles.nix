@@ -74,6 +74,19 @@
 		};
 		onActivation.cleanup = "uninstall";
 	};
+
+	launchd.user.agents.nix-index = {
+		command = pkgs.nix-index + /bin/nix-index;
+		serviceConfig = {
+			ExitTimeOut = 15 * 60; # seconds -> 15min
+			ProcessType = "Background";
+			StartInterval = 60 * 60 * 24 * 7; # seconds -> every 7 days
+			# debugging, remove later
+			StandardErrorPath = "/Users/bene/nix-index-error.log";
+			StandardOutPath = "/Users/bene/nix-index-out.log";
+		};
+	};
+
 	programs.bash.enable = true;
 	programs.fish = {
 		enable = true;
@@ -81,6 +94,7 @@
 		babelfishPackage = pkgs.babelfish;
 	};
 	programs.zsh.enable = true;
+
 	system.defaults = {
 		dock.autohide = true;
 		dock.autohide-delay = 0.0;
