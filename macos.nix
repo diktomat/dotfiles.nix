@@ -104,25 +104,33 @@
 	programs.zsh.enable = true;
 
 	system.defaults = {
-		dock.autohide = true;
-		dock.autohide-delay = 0.0;
-		finder.AppleShowAllExtensions = true;
-		finder.AppleShowAllFiles = true;
-		finder.FXEnableExtensionChangeWarning = false;
-		finder.FXPreferredViewStyle = "clmv"; # column view by default
-		finder.ShowPathbar = true;
-		finder.ShowStatusBar = true;
-		NSGlobalDomain."com.apple.keyboard.fnState" = true; # Fn keys are F1-12
-		NSGlobalDomain.AppleKeyboardUIMode = 3; # full keyboard control of dialogs
-		NSGlobalDomain.AppleShowAllExtensions = true;
-		NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
-		NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
-		screencapture.disable-shadow = true;
-		screencapture.location = "$HOME/Desktop";
-		screencapture.type = "png";
-	};
-	system.defaults.CustomSystemPreferences = {
-		"com.apple.TextEdit".RichText = 0;
+		CustomSystemPreferences = {
+			"com.apple.TextEdit".RichText = 0;
+		};
+		dock = {
+			autohide = true;
+			autohide-delay = 0.0;
+		};
+		finder = {
+			AppleShowAllExtensions = true;
+			AppleShowAllFiles = true;
+			FXEnableExtensionChangeWarning = false;
+			FXPreferredViewStyle = "clmv"; # column view by default
+			ShowPathbar = true;
+			ShowStatusBar = true;
+		};
+		NSGlobalDomain = {
+			"com.apple.keyboard.fnState" = true; # Fn keys are F1-12
+			AppleKeyboardUIMode = 3; # full keyboard control of dialogs
+			AppleShowAllExtensions = true;
+			NSNavPanelExpandedStateForSaveMode = true;
+			NSNavPanelExpandedStateForSaveMode2 = true;
+		};
+		screencapture = {
+			disable-shadow = true;
+			location = "$HOME/Desktop";
+			type = "png";
+		};
 	};
 	system.keyboard.enableKeyMapping = true;
 	system.keyboard.remapCapsLockToEscape = true;
