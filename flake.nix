@@ -2,6 +2,7 @@
 # curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 # nix build .#darwinConfigurations.Benedikts-MBP.system
 # ./result/sw/bin/darwin-rebuild switch --flake .#Benedikts-MBP
+# TODO: Rust
 {
 	description = "d12bb's dotfiles";
 	inputs = {

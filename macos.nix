@@ -4,8 +4,15 @@
 	nixpkgs,
 	...
 }: {
+	system.stateVersion = 4;
 	services.nix-daemon.enable = true;
+
 	nix = {
+		gc = {
+			automatic = true;
+			interval.Day = 7;
+			options = "--delete-older-than 7d";
+		};
 		package = pkgs.nixUnstable;
 		settings.auto-optimise-store = true;
 		extraOptions = ''
@@ -13,19 +20,20 @@
 			extra-nix-path = nixpkgs=flake:nixpkgs
 		'';
 	};
-	nixpkgs.config = {
-		packageOverrides = pkgs: {
-			nerdfonts = pkgs.nerdfonts.override {
-				fonts = ["NerdFontsSymbolsOnly"];
-			};
-		};
-	};
+
 	environment = {
 		shells = [pkgs.fish];
 		loginShell = pkgs.fish;
 	};
+
 	fonts.fontDir.enable = true;
-	fonts.fonts = with pkgs; [ iosevka-bin nerdfonts ];
+	fonts.fonts = with pkgs; [
+		iosevka-bin
+		(nerdfonts.override {
+			fonts = ["NerdFontsSymbolsOnly"];
+		})
+	];
+
 	homebrew = {
 		enable = true;
 		caskArgs.no_quarantine = true;
@@ -118,8 +126,9 @@
 	};
 	system.keyboard.enableKeyMapping = true;
 	system.keyboard.remapCapsLockToEscape = true;
-	system.stateVersion = 4;
+
 	security.pam.enableSudoTouchIdAuth = true;
+
 	users.users.bene = {
 		home = "/Users/bene";
 		shell = pkgs.fish;
