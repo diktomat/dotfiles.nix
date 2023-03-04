@@ -38,7 +38,7 @@ autocmd Filetype *
 \		setl omnifunc=syntaxcomplete#Complete |
 \	endif
 
-let g:ftplugin_rust_source_path = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/library"
+" let g:ftplugin_rust_source_path = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/library"
 let g:rust_recommended_style = 0
 let g:rustfmt_autosave_if_config_present = 1
 let g:mucomplete#enable_auto_at_startup = 1
@@ -51,18 +51,7 @@ let g:mucomplete#completion_delay = 500
 " \	}
 " \ }
 
-call plug#begin()
-Plug 'lifepillar/vim-mucomplete'
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-Plug $HOMEBREW_PREFIX . '/opt/fzf'
-Plug 'junegunn/fzf.vim'
-
-" Filetypes
-Plug 'rust-lang/rust.vim'
-Plug 'fladson/vim-kitty'
-Plug 'blankname/vim-fish'
-call plug#end()
-
-colorscheme catppuccin_macchiato
 nnoremap <leader>f <cmd>GitFiles<cr>
 nnoremap <leader>F <cmd>Files<cr>
+
+colorscheme base16-default-dark

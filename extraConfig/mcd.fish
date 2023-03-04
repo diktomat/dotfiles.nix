@@ -1,0 +1,2 @@
+mkdir $argv
+cd $argv
