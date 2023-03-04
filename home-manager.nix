@@ -103,6 +103,7 @@
 			shellAbbrs = {
 				cat = "bat";
 				cdtmp = "cd (mktemp -d)";
+				darwin-rebuild = "darwin-rebuild switch --flake $HOME/dev/dotfiles#Benedikts-MBP"; # TODO: generalisieren
 				icat = "kitty +kitten icat";
 				kdiff = "kitty +kitten diff";
 				ls = "lsd";
@@ -141,7 +142,7 @@
 					required = true;
 				};
 			};
-			ignores = [ # TODO: gitignore auslagern?
+			ignores = [
 				"Desktop.ini"
 				"._*"
 				"Thumbs.db"
@@ -172,14 +173,6 @@
 			signing.key = "50027A3368AA398E";
 			userEmail = "d12bb@posteo.de";
 			userName = "Benedikt Müller";
-			# delta = {
-			#   enable = true;
-			#   options = {
-			#       line-numbers = true;
-			#       syntax-theme = "catppuccin-macchiato";
-			#       side-by-side = true;
-			#   };
-			# };
 		};
 		gitui.enable = true;
 		gpg = {
@@ -304,7 +297,8 @@ AddKeysToAgent yes
 			enable = true;
 			defaultEditor = true;
 			extraConfig = builtins.readFile ./extraConfig/vimrc;
-			plugins = with pkgs.vimPlugins; [base16-vim fzf-vim rust-vim vim-mucomplete vim-polyglot];
+			plugins = with pkgs.vimPlugins;
+				[base16-vim fzf-vim rust-vim vim-mucomplete vim-polyglot];
 		};
 		yt-dlp = {
 			enable = true;
