@@ -28,6 +28,7 @@
 
   fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
+    emacs-all-the-icons-fonts
     iosevka-bin
     (nerdfonts.override {
       fonts = ["NerdFontsSymbolsOnly"];
@@ -38,8 +39,15 @@
     enable = true;
     caskArgs.no_quarantine = true;
     global.brewfile = true;
-    taps = [];
-    brews = [];
+    taps = ["railwaycat/emacsmacport"];
+    brews = [
+      "coreutils"
+      {
+        name = "emacs-mac";
+        args = ["with-native-compilation" "with-starter"];
+      }
+      "fontconfig" # HM fonts.fontconfig.enable doesnt work
+    ];
     casks = [
       "1password"
       "aldente"
