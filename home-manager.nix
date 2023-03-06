@@ -239,11 +239,11 @@
           whitespace.render.newline = "all";
           whitespace.characters.newline = "↵";
           whitespace.characters.nbsp = "+";
-          keys.normal = {
-            H = "goto_window_top";
-            M = "goto_window_center";
-            L = "goto_window_bottom";
-          };
+        };
+        keys.normal = {
+          H = "goto_window_top";
+          M = "goto_window_center";
+          L = "goto_window_bottom";
         };
       };
     };
