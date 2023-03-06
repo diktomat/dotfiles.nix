@@ -12,13 +12,13 @@
     };
   };
 
-  outputs = inputs @ {
+  outputs = {
     self,
     darwin,
     home-manager,
     nixpkgs,
     ...
-  }: {
+  } @ inputs: {
     formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
     darwinConfigurations."Benedikts-MBP" = darwin.lib.darwinSystem {
       system = "aarch64-darwin";
