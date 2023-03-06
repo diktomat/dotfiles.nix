@@ -321,13 +321,12 @@
     ssh = {
       enable = true;
       extraConfig = ''
-        IdentityFile ~/.ssh/id_rsa
-        UseKeychain yes
-        AddKeysToAgent yes
+        IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
       '';
-      matchBlocks."github.com" = {
-        identityFile = "~/.ssh/id_github";
-        identitiesOnly = true;
+      matchBlocks."gh" = {
+        hostname = "github.com";
+        identityFile = "~/.ssh/1pw_github.pub";
+        user = "git";
       };
     };
     starship = {
