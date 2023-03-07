@@ -119,6 +119,12 @@
         abbr !! --position anywhere --function last_history_item
         abbr --set-cursor clippy-ped cargo clippy % -- -W clippy::pedantic -Aclippy::must_use_candidate -Aclippy::missing_panics_doc -Wclippy::nursery
         function krg --wraps rg; kitty +kitten hyperlinked_grep $argv; end
+        # Kitty shell integration, doesn't work ootb for some reason
+        if set -q KITTY_INSTALLATION_DIR
+            set --global KITTY_SHELL_INTEGRATION enabled
+            source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
+            set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
+        end
       '';
       # https://github.com/LnL7/nix-darwin/issues/122
       loginShellInit = "fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/wrappers/bin /etc/profiles/per-user/$USER/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin";
@@ -211,6 +217,7 @@
         ".sass-cache"
         "tags"
         "*.bak"
+        ".direnv"
       ];
       signing.signByDefault = true;
       signing.key = "50027A3368AA398E";
@@ -296,7 +303,7 @@
         remember_window_size = false;
         scrollback_lines = 10000;
         scrollback_pager_history_size = 1024;
-        shell_integration = "enabled";
+        shell_integration = "disabled";
         # https://sw.kovidgoyal.net/kitty/faq/#kitty-is-not-able-to-use-my-favorite-font
         symbol_map = "U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0C8,U+E0CA,U+E0CC-U+E0D2,U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E634,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF Symbols Nerd Font Mono";
         tab_activity_symbol = "!";
