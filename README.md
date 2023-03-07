@@ -53,6 +53,7 @@ darwin-rebuild switch --flake .#Benedikts-MBP
 # Or review updates first:
 darwin-rebuild build --flake .#Benedikts-MBP
 nix store diff-closures /nix/var/nix/profiles/system ./result
+./result/activate
 ```
 
 ### Bring changes live
