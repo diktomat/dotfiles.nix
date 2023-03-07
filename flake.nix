@@ -10,13 +10,18 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
+    nixpkgs,
     darwin,
     home-manager,
-    nixpkgs,
+    rust-overlay,
     ...
   } @ inputs: {
     formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
@@ -31,6 +36,10 @@
           home-manager.useUserPackages = true;
           home-manager.users.bene = import ./home-manager.nix;
         }
+        ({pkgs, ...}: {
+          nixpkgs.overlays = [rust-overlay.overlays.default];
+          environment.systemPackages = [pkgs.rust-bin.stable.latest.default];
+        })
       ];
     };
   };
