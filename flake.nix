@@ -24,7 +24,14 @@
     rust-overlay,
     ...
   } @ inputs: {
+    devShell.aarch64-darwin = with nixpkgs.legacyPackages.aarch64-darwin;
+      mkShell {
+        buildInputs = [
+          pkgs.nil
+        ];
+      };
     formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
+
     darwinConfigurations."Benedikts-MBP" = darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
