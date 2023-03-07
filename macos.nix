@@ -50,6 +50,7 @@
     ];
     casks = [
       "1password"
+      "1password-cli"
       "aldente"
       "arc"
       "backblaze"
@@ -83,6 +84,7 @@
       "syntax-highlight"
       "transmission"
       "utm"
+      "visual-studio-code"
       "xcodes"
       "ytmdesktop-youtube-music"
       "zoom"
@@ -119,7 +121,6 @@
       Things = 904280696;
       WhatsApp = 1147396723;
     };
-    onActivation.cleanup = "uninstall";
   };
 
   launchd.user.agents.nix-index = {

@@ -136,7 +136,6 @@
       shellAbbrs = {
         cat = "bat";
         cdtmp = "cd (mktemp -d)";
-        darwin-rebuild = "darwin-rebuild switch --flake $HOME/dev/dotfiles#Benedikts-MBP"; # TODO: generalisieren
         icat = "kitty +kitten icat";
         kdiff = "kitty +kitten diff";
         ls = "lsd";

@@ -46,13 +46,19 @@ chsh -s /path/to/nix/fish
 
 ```fish
 nix flake update
-darwin-rebuild switch --flake $HOME/dev/dotfiles#Benedikts-MBP
+
+# Update immediately:
+darwin-rebuild switch --flake .#Benedikts-MBP
+
+# Or review updates first:
+darwin-rebuild build --flake .#Benedikts-MBP
+nix store diff-closures /nix/var/nix/profiles/system ./result
 ```
 
 ### Bring changes live
 
 ```fish
-darwin-rebuild switch --flake $HOME/dev/dotfiles#Benedikts-MBP
+darwin-rebuild switch --flake .#Benedikts-MBP
 ```
 
 ## TODO
