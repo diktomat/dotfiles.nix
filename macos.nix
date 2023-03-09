@@ -10,6 +10,8 @@
 }: {
   system.stateVersion = 4;
   services.nix-daemon.enable = true;
+  networking.hostName = "thor";
+  networking.computerName = "Thor";
 
   nix = {
     gc = {
@@ -17,7 +19,6 @@
       interval.Day = 7;
       options = "--delete-older-than 7d";
     };
-    package = pkgs.nixUnstable;
     settings.auto-optimise-store = true;
     extraOptions = ''
       experimental-features = nix-command flakes

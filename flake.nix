@@ -35,14 +35,16 @@
         devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.alejandra
+            pkgs.just
             pkgs.nil
+            pkgs.nvd
           ];
         };
         formatter = pkgs.alejandra;
       }
     )
     // {
-      darwinConfigurations."Benedikts-MBP" = darwin.lib.darwinSystem {
+      darwinConfigurations.thor = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
           ./macos.nix
