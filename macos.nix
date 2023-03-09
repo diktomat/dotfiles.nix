@@ -1,8 +1,12 @@
 {
   config,
+  darwinConfiguration,
+  modulesPath,
+  lib,
+  options,
+  osConfig,
   pkgs,
-  nixpkgs,
-  ...
+  specialArgs,
 }: {
   system.stateVersion = 4;
   services.nix-daemon.enable = true;
@@ -31,7 +35,7 @@
     emacs-all-the-icons-fonts
     iosevka-bin
     (nerdfonts.override {
-      fonts = ["NerdFontsSymbolsOnly"];
+      fonts = ["Iosevka" "NerdFontsSymbolsOnly"];
     })
   ];
 
@@ -62,25 +66,16 @@
       "docker"
       "firefox"
       "github"
-      "gitup"
       "gpg-suite"
       "jdownloader"
       "keka"
       "keyboardcleantool"
-      "kindle"
-      "lapce"
       "moneymoney"
-      "moom"
       "netnewswire"
-      "nvidia-geforce-now"
-      "orion"
       "portfolioperformance"
-      "raspberry-pi-imager"
       "raycast"
       "signal"
       "steam"
-      "sublime-merge"
-      "sublime-text"
       "syntax-highlight"
       "transmission"
       "utm"
@@ -121,6 +116,8 @@
       Things = 904280696;
       WhatsApp = 1147396723;
     };
+    onActivation.cleanup = "uninstall";
+    onActivation.upgrade = true;
   };
 
   launchd.user.agents.nix-index = {

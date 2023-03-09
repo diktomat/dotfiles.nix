@@ -1,8 +1,12 @@
 {
   config,
-  pkgs,
+  darwinConfig,
   lib,
-  ...
+  modulesPath,
+  options,
+  osConfig,
+  pkgs,
+  specialArgs,
 }: {
   home.stateVersion = "22.11";
 
@@ -41,6 +45,7 @@
       alejandra
       bacon
       comma
+      element-desktop
       fd
       ripgrep
 
@@ -329,8 +334,7 @@
       extraConfig = ''
         IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
       '';
-      matchBlocks."gh" = {
-        hostname = "github.com";
+      matchBlocks."github.com" = {
         identityFile = "~/.ssh/1pw_github.pub";
         user = "git";
       };
