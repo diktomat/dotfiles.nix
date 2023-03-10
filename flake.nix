@@ -13,11 +13,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "utils";
     };
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "utils";
-    };
+    # rust-overlay = {
+    #   url = "github:oxalica/rust-overlay";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.flake-utils.follows = "utils";
+    # };
   };
 
   outputs = {
@@ -25,7 +25,7 @@
     nixpkgs,
     darwin,
     home-manager,
-    rust-overlay,
+    # rust-overlay,
     utils,
   }:
     utils.lib.eachDefaultSystem (
@@ -55,17 +55,17 @@
             home-manager.useUserPackages = true;
             home-manager.users.bene = import ./home-manager.nix;
           }
-          ({
-            config,
-            lib,
-            modulesPath,
-            options,
-            pkgs,
-            specialArgs,
-          }: {
-            nixpkgs.overlays = [rust-overlay.overlays.default];
-            environment.systemPackages = [pkgs.rust-bin.stable.latest.default];
-          })
+          # ({
+          #   config,
+          #   lib,
+          #   modulesPath,
+          #   options,
+          #   pkgs,
+          #   specialArgs,
+          # }: {
+          #   nixpkgs.overlays = [rust-overlay.overlays.default];
+          #   environment.systemPackages = [pkgs.rust-bin.stable.latest.default];
+          # })
         ];
       };
     };

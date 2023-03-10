@@ -64,6 +64,7 @@ in {
       element-desktop
       fd
       ripgrep
+      rustup
 
       # making `doom doctor` happy
       cmake
@@ -81,6 +82,9 @@ in {
       LESSHISTFILE = "/dev/null";
       MANPAGER = "sh -c 'col -bx | ${pkgs.bat}/bin/bat -l man -p'";
       RIPGREP_CONFIG_PATH = "${config.xdg.configHome}/ripgreprc";
+      CARGO_HOME = "${config.xdg.cacheHome}/local.cargo";
+      CARGO_TARGET_DIR = "$CARGO_HOME/target";
+      RUSTUP_HOME = "${config.xdg.cacheHome}/local.rustup";
     };
   };
 
@@ -293,6 +297,7 @@ in {
           whitespace.render.newline = "all";
           whitespace.characters.newline = "↵";
           whitespace.characters.nbsp = "+";
+          # soft-wrap.enable = true;
         };
         keys.normal = {
           H = "goto_window_top";
@@ -412,6 +417,7 @@ in {
   };
 
   xdg.enable = true;
+  xdg.cacheHome = "${config.home.homeDirectory}/Library/Caches";
   xdg.configFile."doom" = {
     onChange = "${pkgs.fish}/bin/fish -lc '${config.xdg.configHome}/emacs/bin/doom sync'";
     recursive = true;
