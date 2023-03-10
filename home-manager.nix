@@ -7,7 +7,9 @@
   osConfig,
   pkgs,
   specialArgs,
-}: {
+}: let
+  toToml = pkgs.formats.toml {};
+in {
   home.stateVersion = "22.11";
 
   editorconfig = {
@@ -38,8 +40,22 @@
       '';
     };
 
+    file.".cargo/config.toml".source = toToml.generate "cargo-config" {
+      registries.crates-io.protocol = "sparse";
+    };
     file.".gnupg/gpg-agent.conf".text = "pinentry-program /usr/local/MacGPG2/libexec/pinentry-mac.app/Contents/MacOS/pinentry-mac";
-    file."Library/Application Support/org.dystroy.bacon/prefs.toml".source = ./extraConfig/bacon.toml;
+    file."Library/Application Support/org.dystroy.bacon/prefs.toml".source = toToml.generate "bacon-config" {
+      default_job = "nextest";
+      jobs.nextest = {
+        command = ["cargo" "nextest" "run" "--color" "always"];
+        watch = ["test"];
+        need_stdout = true;
+      };
+      keybindings = {
+        n = "job:nextest";
+        m = "job:clippy-all";
+      };
+    };
 
     packages = with pkgs; [
       alejandra
