@@ -10,26 +10,7 @@
 }: let
   toToml = pkgs.formats.toml {};
 in {
-  home.stateVersion = "22.11";
-
-  editorconfig = {
-    enable = true;
-    settings = {
-      "*" = {
-        charset = "utf-8";
-        end_of_line = "lf";
-        trim_trailing_whitespace = true;
-        insert_final_newline = true;
-        max_line_width = 78;
-        indent_style = "tab";
-        indent_size = 4;
-      };
-      # don't (fully) support using superior indention
-      "{*.yml,*.yaml,*.nim,*.nix}" = {
-        indent_style = "space";
-      };
-    };
-  };
+  imports = [./common.nix];
 
   home = {
     activation = {
@@ -83,6 +64,7 @@ in {
       MANPAGER = "sh -c 'col -bx | ${pkgs.bat}/bin/bat -l man -p'";
       RIPGREP_CONFIG_PATH = "${config.xdg.configHome}/ripgreprc";
       CARGO_HOME = "${config.xdg.cacheHome}/local.cargo";
+      CARGO_INSTALL_ROOT = "${config.xdg.dataHome}";
       CARGO_TARGET_DIR = "$CARGO_HOME/target";
       RUSTUP_HOME = "${config.xdg.cacheHome}/local.rustup";
     };
@@ -92,19 +74,8 @@ in {
     bat = {
       enable = true;
       config = {
-        theme = "catpuccin-macchiato";
+        theme = "ansi";
         italic-text = "always";
-      };
-      themes = {
-        catpuccin-macchiato = builtins.readFile (
-          pkgs.fetchFromGitHub {
-            owner = "catppuccin";
-            repo = "bat";
-            rev = "ba4d168";
-            sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
-          }
-          + "/Catppuccin-macchiato.tmTheme"
-        );
       };
     };
     broot = {
@@ -132,11 +103,11 @@ in {
     fish = {
       enable = true;
       functions = {
-        brup = builtins.readFile ./extraConfig/brup.fish;
+        brup = builtins.readFile ../extraConfig/brup.fish;
         # e = builtins.readFile ./extraConfig/e.fish;
-        fkill = builtins.readFile ./extraConfig/fkill.fish;
-        frg = builtins.readFile ./extraConfig/frg.fish;
-        mcd = builtins.readFile ./extraConfig/mcd.fish;
+        fkill = builtins.readFile ../extraConfig/fkill.fish;
+        frg = builtins.readFile ../extraConfig/frg.fish;
+        mcd = builtins.readFile ../extraConfig/mcd.fish;
       };
       interactiveShellInit = ''
         # fish_config theme save "Catppuccin Macchiato"
@@ -153,16 +124,6 @@ in {
       '';
       # https://github.com/LnL7/nix-darwin/issues/122
       loginShellInit = "fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/wrappers/bin /etc/profiles/per-user/$USER/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin";
-      # https://github.com/nix-community/home-manager/issues/3724
-      # plugins = [{
-      # 	name = "Catppuccin";
-      # 	src = pkgs.fetchFromGitHub {
-      # 		owner = "catppuccin";
-      # 		repo = "fish";
-      # 		rev = "b90966686068b5ebc9f80e5b90fdf8c02ee7a0ba";
-      # 		sha256 = "sha256-wQlYQyqklU/79K2OXRZXg5LvuIugK7vhHgpahpLFaOw=";
-      # 	};
-      # }];
       shellInit = "test -d /opt/homebrew && eval (/opt/homebrew/bin/brew shellenv)";
       shellAbbrs = {
         cat = "bat";
@@ -287,16 +248,17 @@ in {
     helix = {
       enable = true;
       settings = {
-        theme = "base16_transparent";
+        theme = "onedark";
         editor = {
-          line-number = "relative";
           cursorline = true;
-          indent-guides.render = true;
-          shell = ["${pkgs.fish}/bin/fish" "-c"];
           cursor-shape.insert = "bar";
-          whitespace.render.newline = "all";
-          whitespace.characters.newline = "↵";
+          indent-guides.render = true;
+          line-number = "relative";
+          shell = ["${pkgs.fish}/bin/fish" "-c"];
+          true-color = true;
           whitespace.characters.nbsp = "+";
+          whitespace.characters.newline = "↵";
+          whitespace.render.newline = "all";
           # soft-wrap.enable = true;
         };
         keys.normal = {
@@ -337,7 +299,7 @@ in {
         tab_bar_style = "powerline";
         tab_powerline_style = "angled";
       };
-      theme = "Catppuccin-Macchiato";
+      theme = "One Dark";
     };
     lsd = {
       enable = true;
@@ -356,9 +318,14 @@ in {
         IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
       '';
       matchBlocks."github.com" = {
-        identityFile = "~/.ssh/1pw_github.pub";
+        identityFile = "~/.ssh/github.pub";
         user = "git";
       };
+      # matchBlocks.pi = {
+      #   host = "loki.local";
+      #   identityFile = "~/.ssh/loki.pub";
+      #   user = "bene";
+      # };
     };
     starship = {
       enable = true;
@@ -398,7 +365,7 @@ in {
     vim = {
       enable = true;
       defaultEditor = true;
-      extraConfig = builtins.readFile ./extraConfig/vimrc;
+      extraConfig = builtins.readFile ../extraConfig/vimrc;
       plugins = with pkgs.vimPlugins; [base16-vim fzf-vim rust-vim vim-mucomplete vim-polyglot];
     };
     yt-dlp = {
@@ -421,7 +388,7 @@ in {
   xdg.configFile."doom" = {
     onChange = "${pkgs.fish}/bin/fish -lc '${config.xdg.configHome}/emacs/bin/doom sync'";
     recursive = true;
-    source = ./extraConfig/doom;
+    source = ../extraConfig/doom;
   };
   xdg.configFile."doom/themes/catppuccin-theme.el".text = builtins.readFile (
     pkgs.fetchFromGitHub {
@@ -432,7 +399,7 @@ in {
     }
     + "/catppuccin-theme.el"
   );
-  xdg.configFile."fd/ignore".source = ./extraConfig/fdignore;
+  xdg.configFile."fd/ignore".source = ../extraConfig/fdignore;
   xdg.configFile."kitty/open-actions.conf".text = ''
     # Fragment == line number, fragments are generated by the hyperlink_grep kitten and nothing else
     # so far.

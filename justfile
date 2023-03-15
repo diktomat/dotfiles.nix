@@ -2,7 +2,7 @@ default:
 	@just --list
 
 flakedir := justfile_directory()
-rebuild := if os() == "macos" { "darwin-rebuild" } else { error("todo!") }
+rebuild := if os() == "macos" { "darwin-rebuild" } else { "sudo nixos-rebuild" }
 
 build host=`uname -n`:
 	{{rebuild}} build --flake {{flakedir}}#{{host}}

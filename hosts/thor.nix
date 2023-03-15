@@ -1,3 +1,4 @@
+# Home MBP
 {
   config,
   darwinConfiguration,
@@ -8,23 +9,14 @@
   pkgs,
   specialArgs,
 }: {
+  imports = [./common.nix];
+
   system.stateVersion = 4;
+
   services.nix-daemon.enable = true;
+
   networking.hostName = "thor";
   networking.computerName = "Thor";
-
-  nix = {
-    gc = {
-      automatic = true;
-      interval.Day = 7;
-      options = "--delete-older-than 7d";
-    };
-    settings.auto-optimise-store = true;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      extra-nix-path = nixpkgs=flake:nixpkgs
-    '';
-  };
 
   environment = {
     shells = [pkgs.fish];
@@ -126,7 +118,13 @@
     serviceConfig = {
       ExitTimeOut = 15 * 60; # seconds -> 15min
       ProcessType = "Background";
-      StartInterval = 60 * 60 * 24 * 7; # seconds -> every 7 days
+      StartCalendarInterval = [
+        {
+          Weekday = 0;
+          Hour = 23;
+          Minute = 42;
+        }
+      ];
       # debugging, remove later
       StandardErrorPath = "/Users/bene/nix-index-error.log";
       StandardOutPath = "/Users/bene/nix-index-out.log";

@@ -13,6 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "utils";
     };
+    # TODO: how to Rust
     # rust-overlay = {
     #   url = "github:oxalica/rust-overlay";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -27,34 +28,23 @@
     home-manager,
     # rust-overlay,
     utils,
-  }:
-    utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        devShells.default = pkgs.mkShell {
-          buildInputs = [
-            pkgs.alejandra
-            pkgs.just
-            pkgs.nil
-            pkgs.nvd
-          ];
-        };
-        formatter = pkgs.alejandra;
-      }
-    )
-    // {
+  }: let
+    hmConfig = {
+      home-manager.backupFileExtension = "bak"; # TODO: inherit common
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+    };
+  in
+    {
       darwinConfigurations.thor = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          ./macos.nix
+          ./hosts/thor.nix
           home-manager.darwinModules.home-manager
-          {
-            home-manager.backupFileExtension = "bak";
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.bene = import ./home-manager.nix;
-          }
+          (hmConfig
+            // {
+              home-manager.users.bene = import ./homes/thor.nix;
+            })
           # ({
           #   config,
           #   lib,
@@ -68,5 +58,32 @@
           # })
         ];
       };
-    };
+      # TODO: fast-lane VM
+      # nixosConfigurations.heimdal = nixpkgs.lib.nixosSystem {
+      #   system = "aarch64-linux";
+      #   modules = [
+      #     ./hosts/heimdal.nix
+      #     home-manager.nixosModules.home-manager
+      #     (hmConfig
+      #       // {
+      #         home-manager.users.bene = import ./homes/heimdal.nix;
+      #       })
+      #   ];
+      # };
+    }
+    // utils.lib.eachDefaultSystem (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        devShells.default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            alejandra
+            just
+            nil
+            nvd
+          ];
+        };
+        formatter = pkgs.alejandra;
+      }
+    );
 }
