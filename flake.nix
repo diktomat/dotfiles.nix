@@ -13,6 +13,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "utils";
     };
+
+    helix-head = {
+      url = "github:helix-editor/helix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # TODO: how to Rust
     # rust-overlay = {
     #   url = "github:oxalica/rust-overlay";
@@ -25,6 +30,7 @@
     self,
     nixpkgs,
     darwin,
+    helix-head,
     home-manager,
     # rust-overlay,
     utils,
@@ -43,7 +49,7 @@
           home-manager.darwinModules.home-manager
           (hmConfig
             // {
-              home-manager.users.bene = import ./homes/thor.nix;
+              home-manager.users.bene = import ./homes/thor.nix helix-head;
             })
           # ({
           #   config,

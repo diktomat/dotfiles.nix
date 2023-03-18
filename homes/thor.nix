@@ -1,4 +1,4 @@
-{
+helix-head: {
   config,
   darwinConfig,
   lib,
@@ -232,6 +232,7 @@ in {
     };
     helix = {
       enable = true;
+      package = helix-head.packages.aarch64-darwin.default;
       settings = {
         theme = "onedark";
         editor = {
