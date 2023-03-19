@@ -1,14 +1,5 @@
 # Home MBP
-{
-  config,
-  darwinConfiguration,
-  modulesPath,
-  lib,
-  options,
-  osConfig,
-  pkgs,
-  specialArgs,
-}: {
+{pkgs, ...}: {
   imports = [./common.nix];
 
   system.stateVersion = 4;
@@ -67,7 +58,6 @@
       "syntax-highlight"
       "transmission"
       "utm"
-      "visual-studio-code"
       "xcodes"
       "ytmdesktop-youtube-music"
       "zoom"
@@ -83,7 +73,6 @@
       Consent-O-Matic = 1606897889;
       CotEditor = 1024640650;
       Darkroom = 953286746;
-      Developer = 640199958;
       FakespotSafari = 1592541616;
       Fantastical = 975937182;
       GameTrack = 1136800740;
@@ -100,7 +89,7 @@
       Reeder = 1529448980;
       StopTheMadness = 1376402589;
       Telegram = 747648890;
-      TestFlight = 899247664;
+      # TestFlight = 899247664;
       Things = 904280696;
       WhatsApp = 1147396723;
     };
@@ -120,9 +109,6 @@
           Minute = 42;
         }
       ];
-      # debugging, remove later
-      StandardErrorPath = "/Users/bene/nix-index-error.log";
-      StandardOutPath = "/Users/bene/nix-index-out.log";
     };
   };
 

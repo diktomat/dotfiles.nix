@@ -1,17 +1,14 @@
-helix-head: {
+{
   config,
-  darwinConfig,
-  lib,
-  modulesPath,
-  options,
-  osConfig,
+  # helix,
   pkgs,
-  specialArgs,
+  ...
 }: let
   toToml = pkgs.formats.toml {};
 in {
   imports = [./common.nix];
 
+  nixpkgs.config.allowUnfree = true;
   home = {
     file.".cargo/config.toml".source = toToml.generate "cargo-config" {
       registries.crates-io.protocol = "sparse";
@@ -31,15 +28,21 @@ in {
     };
 
     packages = with pkgs; [
+      # https://github.com/NixOS/nixpkgs/pull/195037#issuecomment-1272302631
+      # _1password
+      # _1password-gui
       alejandra
       bacon
       comma
       element-desktop
       fd
+      just
+      nodejs
       ripgrep
       rustup
     ];
 
+    # TODO: correct $PATH order
     sessionPath = [
       "$HOME/.local/bin"
     ];
@@ -49,7 +52,7 @@ in {
       MANPAGER = "sh -c 'col -bx | ${pkgs.bat}/bin/bat -l man -p'";
       RIPGREP_CONFIG_PATH = "${config.xdg.configHome}/ripgreprc";
       CARGO_HOME = "${config.xdg.cacheHome}/local.cargo";
-      CARGO_INSTALL_ROOT = "${config.xdg.dataHome}";
+      CARGO_INSTALL_ROOT = "$HOME/.local";
       CARGO_TARGET_DIR = "$CARGO_HOME/target";
       RUSTUP_HOME = "${config.xdg.cacheHome}/local.rustup";
     };
@@ -95,7 +98,6 @@ in {
         mcd = builtins.readFile ../extraConfig/mcd.fish;
       };
       interactiveShellInit = ''
-        # fish_config theme save "Catppuccin Macchiato"
         function last_history_item; echo $history[1]; end
         abbr !! --position anywhere --function last_history_item
         abbr --set-cursor clippy-ped cargo clippy % -- -W clippy::pedantic -Aclippy::must_use_candidate -Aclippy::missing_panics_doc -Wclippy::nursery
@@ -232,7 +234,7 @@ in {
     };
     helix = {
       enable = true;
-      package = helix-head.packages.aarch64-darwin.default;
+      # package = helix.packages.${pkgs.system}.default;
       settings = {
         theme = "onedark";
         editor = {
@@ -245,7 +247,7 @@ in {
           whitespace.characters.nbsp = "+";
           whitespace.characters.newline = "↵";
           whitespace.render.newline = "all";
-          # soft-wrap.enable = true;
+          soft-wrap.enable = true;
         };
         keys.normal = {
           H = "goto_window_top";

@@ -5,19 +5,18 @@
     utils.url = "github:numtide/flake-utils";
 
     darwin = {
-      url = "github:lnl7/nix-darwin/master";
+      url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "utils";
     };
 
-    helix-head = {
-      url = "github:helix-editor/helix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # helix = {
+    # url = "github:helix-editor/helix";
+    # inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # TODO: how to Rust
     # rust-overlay = {
     #   url = "github:oxalica/rust-overlay";
@@ -27,16 +26,15 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     darwin,
-    helix-head,
+    # helix,
     home-manager,
-    # rust-overlay,
     utils,
+    ...
   }: let
     hmConfig = {
-      home-manager.backupFileExtension = "bak"; # TODO: inherit common
+      home-manager.backupFileExtension = "bak";
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
     };
@@ -49,7 +47,8 @@
           home-manager.darwinModules.home-manager
           (hmConfig
             // {
-              home-manager.users.bene = import ./homes/thor.nix helix-head;
+              # home-manager.extraSpecialArgs = {helix = helix;};
+              home-manager.users.bene = import ./homes/thor.nix;
             })
           # ({
           #   config,
