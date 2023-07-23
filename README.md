@@ -27,9 +27,9 @@ works.
 - everything else: Remnants of my old self
 
 ## Bootstrap
-
-```fish
 ### Darwin
+
+```bash
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # Install Nix
@@ -41,25 +41,34 @@ nix build .#darwinConfigurations.Benedikts-MBP.system
 chsh -s /path/to/nix/fish
 ```
 
+### Linux
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+nix run home-manager/master -- switch --flake .#$HOSTNAME
+which fish |sudo tee -a /etc/shells
+chsh -s $(which fish)
+```
+
 ## Usage
 ### Update software
 
 ```fish
-nix flake update
+just update # nix flake update
 
 # Update immediately:
-darwin-rebuild switch --flake .#Benedikts-MBP
+just switch
 
 # Or review updates first:
-darwin-rebuild build --flake .#Benedikts-MBP
-nix store diff-closures /nix/var/nix/profiles/system ./result
-./result/activate
+just build
+just diff
+just switch
 ```
 
 ### Bring changes live
 
 ```fish
-darwin-rebuild switch --flake .#Benedikts-MBP
+just switch
 ```
 
 ## TODO

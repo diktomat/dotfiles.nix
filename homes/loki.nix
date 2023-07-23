@@ -1,6 +1,5 @@
 {
   config,
-  # helix,
   pkgs,
   ...
 }: let
@@ -10,55 +9,27 @@ in {
 
   nixpkgs.config.allowUnfree = true;
   home = {
-    file.".cargo/config.toml".source = toToml.generate "cargo-config" {
-      registries.crates-io.protocol = "sparse";
-    };
-    file.".gnupg/gpg-agent.conf".text = "pinentry-program /usr/local/MacGPG2/libexec/pinentry-mac.app/Contents/MacOS/pinentry-mac";
-    file."Library/Application Support/org.dystroy.bacon/prefs.toml".source = toToml.generate "bacon-config" {
-      default_job = "nextest";
-      jobs.nextest = {
-        command = ["cargo" "nextest" "run" "--color" "always"];
-        watch = ["test"];
-        need_stdout = true;
-      };
-      keybindings = {
-        n = "job:nextest";
-        m = "job:clippy-all";
-      };
-    };
+    username = "bene";
+    homeDirectory = "/home/bene";
 
     packages = with pkgs; [
-      # https://github.com/NixOS/nixpkgs/pull/195037#issuecomment-1272302631
-      # _1password
-      # _1password-gui
       alejandra
-      bacon
       comma
-      element-desktop
       fd
       just
-      nodejs
       ripgrep
-      rustup
     ];
 
-    # TODO: correct $PATH order
-    sessionPath = [
-      "$HOME/.local/bin"
-    ];
     sessionVariables = {
       LESS = "--ignore-case --incsearch --HILITE-UNREAD --tabs=4 --prompt=?n?f%f.:?e?x Next\: %x:(EOF).:?p%pb\%...?m (%i/%m).";
       LESSHISTFILE = "/dev/null";
       MANPAGER = "sh -c 'col -bx | ${pkgs.bat}/bin/bat -l man -p'";
       RIPGREP_CONFIG_PATH = "${config.xdg.configHome}/ripgreprc";
-      CARGO_HOME = "${config.xdg.cacheHome}/local.cargo";
-      CARGO_INSTALL_ROOT = "$HOME/.local";
-      CARGO_TARGET_DIR = "$CARGO_HOME/target";
-      RUSTUP_HOME = "${config.xdg.cacheHome}/local.rustup";
     };
   };
 
   programs = {
+    home-manager.enable = true;
     bat = {
       enable = true;
       config = {
@@ -115,12 +86,9 @@ in {
       shellAbbrs = {
         cat = "bat";
         cdtmp = "cd (mktemp -d)";
-        icat = "kitty +kitten icat";
-        kdiff = "kitty +kitten diff";
         ls = "lsd";
         l = "lsd -l";
         la = "lsd -lA";
-        ssh = "kitty +kitten ssh";
         tree = "lsd --tree";
       };
     };
@@ -155,7 +123,6 @@ in {
       difftastic.enable = true;
       difftastic.background = "dark";
       extraConfig = {
-        credential.helper = "osxkeychain";
         init.defaultBranch = "main";
         "filter \"lfs\"" = {
           clean = "${pkgs.git-lfs}/bin/git-lfs clean -- %f";
@@ -256,39 +223,6 @@ in {
         };
       };
     };
-    kitty = {
-      # extra config files at xdg.configFile.* below
-      enable = true;
-      font.package = pkgs.iosevka-bin;
-      font.name = "Iosevka Term";
-      font.size = 14;
-      keybindings = {
-        "cmd+enter" = "launch --cwd=current --type=window";
-        "cmd+]" = "next_window";
-        "cmd+[" = "previous_window";
-        "cmd+equal" = "change_font_size current +2.0";
-        "cmd+minus" = "change_font_size current -2.0";
-        "cmd+0" = "change_font_size current 0";
-      };
-      settings = {
-        disable_ligatures = "cursor";
-        enabled_layouts = "tall,fat,grid,stack";
-        initial_window_height = "24c";
-        initial_window_width = "95c";
-        macos_option_as_alt = "left";
-        remember_window_size = false;
-        scrollback_lines = 10000;
-        scrollback_pager_history_size = 1024;
-        shell_integration = "disabled";
-        # https://sw.kovidgoyal.net/kitty/faq/#kitty-is-not-able-to-use-my-favorite-font
-        symbol_map = "U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0C8,U+E0CA,U+E0CC-U+E0D2,U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E634,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF Symbols Nerd Font Mono";
-        tab_activity_symbol = "!";
-        tab_bar_edge = "top";
-        tab_bar_style = "powerline";
-        tab_powerline_style = "angled";
-      };
-      theme = "One Dark";
-    };
     lsd = {
       enable = true;
       settings = {
@@ -302,17 +236,9 @@ in {
     pandoc.enable = true;
     ssh = {
       enable = true;
-      extraConfig = ''
-        IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-      '';
       matchBlocks."github.com" = {
         identityFile = "~/.ssh/github.pub";
         user = "git";
-      };
-      matchBlocks.pi = {
-        hostname = "loki.local";
-        identityFile = "~/.ssh/loki.pub";
-        user = "bene";
       };
     };
     starship = {
@@ -356,44 +282,11 @@ in {
       extraConfig = builtins.readFile ../extraConfig/vimrc;
       plugins = with pkgs.vimPlugins; [base16-vim fzf-vim rust-vim vim-mucomplete vim-polyglot];
     };
-    yt-dlp = {
-      enable = true;
-      settings = {
-        embed-chapters = true;
-        embed-metadata = true;
-        embed-subs = true;
-        embed-thumbnail = true;
-        format-sort = "ext";
-        output = "%(title)s.%(ext)s";
-        xattrs = true;
-      };
-    };
     zoxide.enable = true;
   };
 
   xdg.enable = true;
-  xdg.cacheHome = "${config.home.homeDirectory}/Library/Caches";
   xdg.configFile."fd/ignore".source = ../extraConfig/fdignore;
-  xdg.configFile."kitty/open-actions.conf".text = ''
-    # Fragment == line number, fragments are generated by the hyperlink_grep kitten and nothing else
-    # so far.
-    protocol file
-    fragment_matches [0-9]+
-    action launch --type=overlay --cwd=current vim +''${FRAGMENT} ''${FILE_PATH}
-
-    # Open text files without fragments in bat protocol file
-    mime text/*
-    action launch --type=overlay --cwd=current bat --paging=always ''${FILE_PATH}
-
-    # Open images using the icat kitten
-    protocol file
-    mime image/*
-    action launch --type=overlay kitty +kitten icat --hold ''${FILE_PATH}
-  '';
-  xdg.configFile."kitty/ssh.conf".text = ''
-    copy .vim .config/fish
-    env EDITOR=vim
-  '';
   xdg.configFile."ripgreprc".text = ''
     --engine=auto
     --smart-case

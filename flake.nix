@@ -40,6 +40,7 @@
     };
   in
     {
+      # Thpr: Home Macbook Pro
       darwinConfigurations.thor = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
@@ -63,6 +64,7 @@
           # })
         ];
       };
+
       # TODO: fast-lane VM
       # nixosConfigurations.heimdal = nixpkgs.lib.nixosSystem {
       #   system = "aarch64-linux";
@@ -75,6 +77,19 @@
       #       })
       #   ];
       # };
+
+      # Loki: Home Raspberry Pi
+      homeConfigurations.loki = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.aarch64-linux;
+        modules = [./homes/loki.nix];
+        #   ./hosts/loki.nix
+        #   home-manager.nixosModules.home-manager
+        #   (hmConfig
+        #     // {
+        #       home-manager.users.bene = import ./homes/loki.nix;
+        #     })
+        # ];
+      };
     }
     // utils.lib.eachDefaultSystem (
       system: let
