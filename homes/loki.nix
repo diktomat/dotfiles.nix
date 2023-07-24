@@ -286,10 +286,27 @@ in {
     zoxide.enable = true;
   };
 
+  # FIXME: using out-of-nix python, relying on out-of-nix pip. Package this shit instead.
+  systemd.user.services.iSponsorBlockTV = let
+    iSBTV = pkgs.fetchFromGitHub {
+      owner = "dmunozv04";
+      repo = "iSponsorBlockTV";
+      rev = "1aa06e6";
+      sha256 = "sha256-SS1UCZvMFEz4ibB/FU5up9pStjXBCjUXq/6eWZEhXMw=";
+    };
+  in {
+    Install.WantedBy = ["multi-user.target"];
+    Service = {
+      ExecStart = "python3 ${iSBTV}/main.py -f ${config.xdg.configHome}/iSponsorBlockTV/config.json";
+    };
+  };
+
   xdg.enable = true;
   xdg.configFile."fd/ignore".source = ../extraConfig/fdignore;
   xdg.configFile."ripgreprc".text = ''
     --engine=auto
     --smart-case
   '';
+  # TODO: use op to fill in secrets
+  # xdg.configFile."iSponsorBlockTV/config.json".text =
 }
