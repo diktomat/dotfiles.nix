@@ -17,6 +17,7 @@ in {
       comma
       fd
       just
+      less
       ripgrep
     ];
 

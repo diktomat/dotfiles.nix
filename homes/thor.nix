@@ -310,6 +310,7 @@ in {
         user = "git";
       };
       matchBlocks.pi = {
+        forwardAgent = true;
         hostname = "loki.local";
         identityFile = "~/.ssh/loki.pub";
         user = "bene";
